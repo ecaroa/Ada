@@ -16,7 +16,7 @@ public class Ejercicio004 {
     public static void main(String[] args) {
         
         double  CN, V, TotalA, TotalB, TotalC, TotalV;
-        int A, B, C, N;
+        int A, B, C;
 
         TotalA = 0;
         TotalB = 0;
