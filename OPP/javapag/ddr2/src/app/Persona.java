@@ -40,7 +40,12 @@ public class Persona {
         this.altura = altura;
         this.m = m;
     }
-    
+
+    public int calcularIMC(){
+        double pesoActual = peso /
+
+    }
+
 
     
     
