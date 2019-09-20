@@ -12,11 +12,10 @@
         },
         {
             "type": "java",
-            "name": "Debug (Launch)-App<billeteravirtual>",
+            "name": "Debug (Launch)-App<hallenge>",
             "request": "launch",
-            "mainClass": "ar.com.ada.billeteravirtual.App",
-            "projectName": "billeteravirtual",
-            "console": "externalTerminal"
+            "mainClass": "app.App",
+            "projectName": "hallenge"
         }
     ]
 }

@@ -56,13 +56,7 @@ public class Persona {
         return edad;
     }
 
-    public int setEdad()throws PersistenceException {
-        if (edad < 18) {
-            {
-                //no se ejecuta nada mas despues del throw  
-                throw new PersonaInfoException(this,"Ocurrio un error con la edad");
-            }
-        this.edad = edad;
+    public int setEdad(int edad) {
         return edad;
     }
 

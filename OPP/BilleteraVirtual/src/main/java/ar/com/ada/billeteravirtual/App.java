@@ -12,7 +12,7 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         
-       // try {
+ try {
         
         ABMPersona.setup();
         ABMUsuario.setup();
@@ -59,13 +59,14 @@ public class App {
         // Hago un safe exit del manager
         ABMPersona.exit();
         ABMUsuario.exit();
+    }
 
-    /*}catch (Exception e){
+    catch (Exception e){
         System.out.println("Que lindo mi sistema, se rompio mi sistema");
         throw e;
     }finally {
         System.out.println("saliendo del sistema, bye bye......");
-    }*/
+    }
     }
 
     public static void alta() {
@@ -96,7 +97,7 @@ public class App {
             u.setPesonaId(p.getPesonaId());
             ABMUsuario.create(u);
             System.out.println("Usuario generada con exito.");
-        }else {
+        } else {
             System.out.println("No se ha creado usuario");
         }
     }
@@ -113,15 +114,14 @@ public class App {
             System.out.println("Persona no encontrada.");
 
         } else {
-            try { 
+            try {
                 ABMPersona.delete(personaEncontrada);
                 System.out.println("El registro de " + personaEncontrada.getDni() + " ha sido eliminado.");
             } catch (Exception e) {
-                //TODO: handle exception
+                // TODO: handle exception
                 System.out.println("Ocurrio un error al eliminar persona");
             }
-           
-           
+
         }
     }
 
@@ -167,19 +167,18 @@ public class App {
             ABMPersona.update(personaEncontrada);
             System.out.println("El registro de " + personaEncontrada.getDni() + " ha sido modificado.");
 
-           /* System.out.println("Quiere modificar el usuario? s/n ");
-            String respuesta = Teclado.nextLine();
-            if (respuesta.equals("s")) {
-                System.out.println("Ingrese el nuevo user:");
-                personaEncontrada.setUsername(Teclado.nextLine());
-                System.out.println("Ingrese el nuevo DNI:");
-                personaEncontrada.setPas(Teclado.nextLine());
-               
-
-                System.out.println("Se ha modificado con exito.");
-            }else {
-                System.out.println("No se modificado el usuario");
-            }*/
+            /*
+             * System.out.println("Quiere modificar el usuario? s/n "); String respuesta =
+             * Teclado.nextLine(); if (respuesta.equals("s")) {
+             * System.out.println("Ingrese el nuevo user:");
+             * personaEncontrada.setUsername(Teclado.nextLine());
+             * System.out.println("Ingrese el nuevo DNI:");
+             * personaEncontrada.setPas(Teclado.nextLine());
+             * 
+             * 
+             * System.out.println("Se ha modificado con exito."); }else {
+             * System.out.println("No se modificado el usuario"); }
+             */
 
         } else {
             System.out.println("Persona no encontrada.");
