@@ -7,26 +7,40 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table (name = "usuario")
+@Table(name = "usuario")
 public class Usuario {
     @Id
-    @Column (name = "usuario_id")
+    @Column(name = "usuario_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int usuarioId;
-    private String username;
-    private String password;
-    private String email;
-    @Column(name = "persona_id")
-    private int pesonaId;
 
-    public Usuario(String username, String password, String email, int pesonaId) {
-        this.username = username;
+    private Integer usuarioId;
+    private String userName;
+    private String password;
+    @Column(name = "email")
+    private String userEmail;
+    /*
+     * @Column(name = "persona_id") private int pesonaId;
+     */
+
+    // ACTIVO lel OneTo One, pero para que funcione persona tiene quetener un valor.
+    // Aca no hace falta el cascade
+    @OneToOne
+    @JoinColumn(name = "persona_id", referencedColumnName = "persona_id")
+    // @MapsId
+    private Persona persona;
+
+    public Usuario(String userName, String password, String email) {
+        this.userName = userName;
         this.password = password;
-        this.email = email;
-        this.pesonaId = pesonaId;
+        this.userEmail = email;
     }
 
-    public Usuario () {   
+    public Usuario() {
+
+    }
+
+    public Usuario(String password) {
+        this.password = password;
     }
 
     public int getUsuarioId() {
@@ -37,12 +51,12 @@ public class Usuario {
         this.usuarioId = usuarioId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -53,27 +67,38 @@ public class Usuario {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getPesonaId() {
-        return pesonaId;
-    }
-
-    public void setPesonaId(int pesonaId) {
-        this.pesonaId = pesonaId;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return "Usuario [Username=" + username + "]";
+        return "Usuario [User Name=" + userName + ", Password=" + password + ", User Email=" + userEmail + "]";
+    }
+    /*
+     * public int getPersonaId() { return personaId; }
+     * 
+     * public void setPersonaId(int personaId) { this.personaId = personaId; }
+     * 
+     * public Usuario(int personaId) { this.personaId = personaId; }
+     */
+
+    public Persona getPersona() {
+        return persona;
     }
 
-    
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
+    /*
+     * public String getEmail() { return email; }
+     * 
+     * public void setEmail(String email) { this.email = email; }
+     */
+
 }
