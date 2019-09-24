@@ -1,6 +1,5 @@
 package ar.com.ada.billeteravirtual;
 
-import java.util.*;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,7 +13,6 @@ public class App {
     public static Scanner Teclado = new Scanner(System.in);
 
     public static PersonaManager ABMPersona = new PersonaManager();
-
     public static UsuarioManager ABMUsuario = new UsuarioManager();
 
     public static void main(String[] args) throws Exception {
@@ -33,10 +31,10 @@ public class App {
 
                 switch (opcion) {
                 case 1:
-
+            
                     try {
-                        alta();
-                    } catch (PersonaEdadException exedad) {
+                        alta();            
+                    } catch (PersonaEdadException exedad){
                         System.out.println("La edad permitida es a partir de 18 anios");
                     }
                     break;
@@ -71,14 +69,16 @@ public class App {
             // Hago un safe exit del manager
             ABMPersona.exit();
             ABMUsuario.exit();
-        }
 
-        catch (Exception e) {
-            System.out.println("Que lindo mi sistema, se rompio mi sistema");
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.out.println("Que lindo mi sistema,se rompio mi sistema");
             throw e;
         } finally {
-            System.out.println("saliendo del sistema, bye bye......");
+            System.out.println("Saliendo del sistema, bye bye...");
+
         }
+
     }
 
     public static void alta() throws Exception {
@@ -89,16 +89,16 @@ public class App {
         p.setDni(Teclado.nextLine());
         System.out.println("Ingrese la edad:");
         p.setEdad(Teclado.nextInt());
-
+        
         Teclado.nextLine();
         System.out.println("Ingrese el Email:");
         p.setEmail(Teclado.nextLine());
 
-        // ABMPersona.create(p);
+        //ABMPersona.create(p);
 
-        // System.out.println("Persona generada con exito. " + p);
+        //System.out.println("Persona generada con exito.  " + p);
 
-        System.out.println("Desea crear un usuario para esa persona?");
+        System.out.println("Desea crear un usuario para esa persona? si/no");
 
         String rta;
         rta = Teclado.nextLine();
@@ -108,25 +108,27 @@ public class App {
             u.setUserName(p.getEmail());
             System.out.println("Su nombre de usuario es " + u.getUserName());
             System.out.println("Ingrese su password:");
-
-            // La password ingresa en texto claro a la variable y luego se encripta
+            
+            //La password ingresa en texto claro a la variable y luego se encripta
             String passwordEnTextoClaro;
             String passwordEncriptada;
             String passwordEnTextoClaroDesencriptado;
 
             passwordEnTextoClaro = Teclado.nextLine();
 
-            passwordEncriptada = Crypto.encrypt(passwordEnTextoClaro, "shakalaka!!!");
+            passwordEncriptada = Crypto.encrypt(passwordEnTextoClaro, u.getUserName());
 
-            passwordEnTextoClaroDesencriptado = Crypto.decrypt(passwordEncriptada, "shakalaka!!!");
+            passwordEnTextoClaroDesencriptado = Crypto.decrypt(passwordEncriptada, u.getUserName());
 
-            System.out.println("Tu password encriptada es :" + passwordEncriptada);
+            System.out.println("Tu password encriptada es :" +  passwordEncriptada);
 
-            System.out.println("Tu password desencriptada es :" + passwordEnTextoClaroDesencriptado);
+            System.out.println("Tu password desencriptada es :" +  passwordEnTextoClaroDesencriptado);
 
-            if (passwordEnTextoClaro.equals(passwordEnTextoClaroDesencriptado)) {
+            if (passwordEnTextoClaro.equals(passwordEnTextoClaroDesencriptado))
+            {
                 System.out.println("Ambas passwords coinciden");
-            } else {
+            }
+            else {
                 System.out.println("Las passwords no coinciden, nunca debio entrar aqui");
             }
 
@@ -135,16 +137,15 @@ public class App {
             /*
              * System.out.println("Su mail es:"); u.setUserEmail(p.getEmail());
              */
-            // System.out.println("Ingrese su email de usuario:");
-            u.setUserName(u.getUserName());
+            //System.out.println("Ingrese su email de usuario:");
+            u.setUserEmail(u.getUserName());
 
             p.setUsuario(u);
-            /// u.setPersona(p); <- esta linea hariaa falta si no lo hacemos en el
-            /// p.SetUsuario(u)
-            // u.setPersonaId(p.getPesonaId());
-            // ABMUsuario.create(u);
+            //u.setPersona(p); <- esta linea hariaa falta si no lo hacemos en el p.SetUsuario(u)
+            //u.setPersonaId(p.getPesonaId());
+            //ABMUsuario.create(u);
 
-            // System.out.println("Usuario generado con exito. " + u);
+            //System.out.println("Usuario generado con exito.  " + u);
         }
 
         ABMPersona.create(p);
