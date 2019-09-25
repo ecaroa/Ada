@@ -1,52 +1,40 @@
 package ar.com.ada.billeteravirtual;
 
-import java.util.Date;
+import java.util.*;
+
+import javax.persistence.*;
 
 /**
  * Movimiento
  */
+@Entity
+@Table(name= "movimiento")
 public class Movimiento {
-    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int movimientoId;
-    private Date fechaMov;
-    private Cordenada ubicacion;
+    private Date fechaMovimiento;
+    //private Coordenada ubicacion;
     private double importe;
-    private String tipoOperacion;
-    private String conceptoOpercion;
+    private String tipoDeOperacion;
+    private String conceptoDeOperacion;
     private String detalle;
     private int estado;
-    private int deUsuarioId;
-    private int aUsuarioId;
-    private Usuario deUsuario;
-    private Usuario aUsuario;
-    private Cuenta cuentaDestino;
-    private Cuenta cuentaOrigen;
-    private int cuentaOrigenId;
-    private int cuentaDestinoId;
-
-    public int getMovimientoId() {
-        return movimientoId;
-    }
-
-    public void setMovimientoId(int movimientoId) {
-        this.movimientoId = movimientoId;
-    }
-
-    public Date getFechaMov() {
-        return fechaMov;
-    }
-
-    public void setFechaMov(Date fechaMov) {
-        this.fechaMov = fechaMov;
-    }
-
-    public Cordenada getUbicacion() {
-        return ubicacion;
-    }
-
-    public void setUbicacion(Cordenada ubicacion) {
-        this.ubicacion = ubicacion;
-    }
+    private int deUsuario_id;
+    private int aUsuario_id;
+    //private Usuario deUsuario;
+    //private Usuario aUsuario;
+    //private Cuenta cuentaDestino;
+    //private Cuenta cuentaOrigen;
+    private int cuentaDestino_id;
+    private int cuentaOrigen_id;
+    
+    
+    @ManyToOne
+    @JoinColumn(name = "cuentaId", referencedColumnName = "cuentaId")
+    //@MapsId
+    private Cuenta cuenta;
 
     public double getImporte() {
         return importe;
@@ -56,20 +44,20 @@ public class Movimiento {
         this.importe = importe;
     }
 
-    public String getTipoOperacion() {
-        return tipoOperacion;
+    public String getTipoDeOperacion() {
+        return tipoDeOperacion;
     }
 
-    public void setTipoOperacion(String tipoOperacion) {
-        this.tipoOperacion = tipoOperacion;
+    public void setTipoDeOperacion(String tipoDeOperacion) {
+        this.tipoDeOperacion = tipoDeOperacion;
     }
 
-    public String getConceptoOpercion() {
-        return conceptoOpercion;
+    public String getConceptoDeOperacion() {
+        return conceptoDeOperacion;
     }
 
-    public void setConceptoOpercion(String conceptoOpercion) {
-        this.conceptoOpercion = conceptoOpercion;
+    public void setConceptoDeOperacion(String conceptoDeOperacion) {
+        this.conceptoDeOperacion = conceptoDeOperacion;
     }
 
     public String getDetalle() {
@@ -88,68 +76,86 @@ public class Movimiento {
         this.estado = estado;
     }
 
-    public int getDeUsuarioId() {
-        return deUsuarioId;
-    }
-
-    public void setDeUsuarioId(int deUsuarioId) {
-        this.deUsuarioId = deUsuarioId;
-    }
-
-    public int getaUsuarioId() {
-        return aUsuarioId;
-    }
-
-    public void setaUsuarioId(int aUsuarioId) {
-        this.aUsuarioId = aUsuarioId;
-    }
-
-    public Usuario getDeUsuario() {
+    /*public Usuario getDeUsuario() {
         return deUsuario;
     }
-
     public void setDeUsuario(Usuario deUsuario) {
         this.deUsuario = deUsuario;
     }
-
     public Usuario getaUsuario() {
         return aUsuario;
     }
-
     public void setaUsuario(Usuario aUsuario) {
         this.aUsuario = aUsuario;
     }
-
     public Cuenta getCuentaDestino() {
         return cuentaDestino;
     }
-
     public void setCuentaDestino(Cuenta cuentaDestino) {
         this.cuentaDestino = cuentaDestino;
     }
-
     public Cuenta getCuentaOrigen() {
         return cuentaOrigen;
     }
-
     public void setCuentaOrigen(Cuenta cuentaOrigen) {
         this.cuentaOrigen = cuentaOrigen;
     }
+/**
+     * @param movimiento the usuario to set
+     */
 
-    public int getCuentaOrigenId() {
-        return cuentaOrigenId;
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
+
     }
 
-    public void setCuentaOrigenId(int cuentaOrigenId) {
-        this.cuentaOrigenId = cuentaOrigenId;
+    /**
+     * @return the usuario
+     */
+    public Cuenta getCuenta() {
+        return cuenta;
     }
 
-    public int getCuentaDestinoId() {
-        return cuentaDestinoId;
+    public Date getFechaMovimiento() {
+        return fechaMovimiento;
     }
 
-    public void setCuentaDestinoId(int cuentaDestinoId) {
-        this.cuentaDestinoId = cuentaDestinoId;
+    public void setFechaMovimiento(Date fechaMovimiento) {
+        this.fechaMovimiento = fechaMovimiento;
     }
+
+    public int getDeUsuario_id() {
+        return deUsuario_id;
+    }
+
+    public void setDeUsuario_id(int deUsuario_id) {
+        this.deUsuario_id = deUsuario_id;
+    }
+
+    public int getaUsuario_id() {
+        return aUsuario_id;
+    }
+
+    public void setaUsuario_id(int aUsuario_id) {
+        this.aUsuario_id = aUsuario_id;
+    }
+
+    public int getCuentaDestino_id() {
+        return cuentaDestino_id;
+    }
+
+    public void setCuentaDestino_id(int cuentaDestino_id) {
+        this.cuentaDestino_id = cuentaDestino_id;
+    }
+
+    public int getCuentaOrigen_id() {
+        return cuentaOrigen_id;
+    }
+
+    public void setCuentaOrigen_id(int cuentaOrigen_id) {
+        this.cuentaOrigen_id = cuentaOrigen_id;
+    }
+
+
 
 }

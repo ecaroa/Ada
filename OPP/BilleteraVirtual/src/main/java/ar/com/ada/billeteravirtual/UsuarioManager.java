@@ -16,7 +16,6 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
  * UsuarioManager
  */
 public class UsuarioManager {
-
     protected SessionFactory sessionFactory;
 
     protected void setup() {
@@ -60,82 +59,69 @@ public class UsuarioManager {
         return usuario;
     }
 
-   /* protected Persona readByDNI(String dni) {
+    public Usuario read(String userName){
         Session session = sessionFactory.openSession();
 
-        Persona persona = session.get(Persona.class, dni);
+        Usuario usuario = session.get(Usuario.class, userName);
 
         session.close();
 
+        return usuario;
+    }
+/*
+    protected Usuario readByDNI(String dni) {
+        Session session = sessionFactory.openSession();
+        Persona persona = session.get(Persona.class, dni);
+        session.close();
         return persona;
     }*/
 
-    protected void update(Usuario usuario) {
+    protected void update(Usuario usuarioEncontrado) {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        session.update(usuario);
+        session.update(usuarioEncontrado);
 
         session.getTransaction().commit();
         session.close();
     }
 
-    protected void delete(Usuario usuario) {
-
+    /*protected void delete(Persona persona) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-
-        session.delete(usuario);
-
+        session.delete(persona);
         session.getTransaction().commit();
         session.close();
     }
-
-
     /**
      * Este metodo en la vida real no debe existir ya qeu puede haber miles de usuarios
      * @return
      */
-    /*public List<Usuario> buscarTodas() {
-
+    /*public List<Persona> buscarTodas() {
         Session session = sessionFactory.openSession();
-
         ///NUNCA HARCODEAR SQLs nativos en la aplicacion.
         //ESTO es solo para nivel educativo
-        Query query = session.createNativeQuery("SELECT * FROM usuario", Usuario.class);
-
-        List<Usuario> todas = query.getResultList();
-
+        Query query = session.createNativeQuery("SELECT * FROM persona", Persona.class);
+        List<Persona> todas = query.getResultList();
         return todas;
-
         
-
     }
-        */
-
-
     /**
      * Busca una lista de personas por el nombre completo
      * Esta armado para que se pueda generar un SQL Injection y mostrar commo NO debe programarse.
      * @param nombre
      * @return
      */
-    /* public List<Persona> buscarPor(String nombre) {
-
+    /*public List<Persona> buscarPor(String nombre) {
         Session session = sessionFactory.openSession();
-
         //SQL Injection vulnerability exposed.
         //Deberia traer solo aquella del nombre y con esto demostrarmos que trae todas si pasamos
         //como nombre: "' or '1'='1"
         Query query = session.createNativeQuery("SELECT * FROM persona where nombre = '"+nombre+"'", Persona.class);
-
         List<Persona> personas = query.getResultList();
-
         return personas;
-
         
-
-    } */
+    }*/
 
 }

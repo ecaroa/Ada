@@ -23,6 +23,10 @@ public class Persona {
     @OneToOne( mappedBy = "persona", cascade = CascadeType.ALL)
     private Usuario usuario;
 
+    @OneToOne
+    @JoinColumn(name="billetera_id")
+    private Billetera billetera;
+
     public Persona(String nombre, String dni, int edad, String email) {
         this.nombre = nombre;
         this.dni = dni;

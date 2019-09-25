@@ -1,26 +1,31 @@
 package ar.com.ada.billeteravirtual;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
+import javax.persistence.*;
 /**
  * Cuenta
  */
-public class Cuenta {
+@Entity
+@Table(name = "cuenta")
 
-    private int cuentaId;
+public class Cuenta {
+    @Id
+    @Column(name = "cuentaId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int cuenta_id;
+
     private String moneda;
     private double saldo;
     private double saldoDisponible;
-    private List <Movimiento> listaMovimientos = new ArrayList<Movimiento>();
 
-    public int getCuentaId() {
-        return cuentaId;
-    }
+    @ManyToOne
+    @JoinColumn(name = "billetera_id", referencedColumnName = "billetera_id")
+    // @MapsId
+    private Billetera billetera;
 
-    public void setCuentaId(int cuentaId) {
-        this.cuentaId = cuentaId;
-    }
+    @OneToMany(mappedBy = "cuenta", cascade = CascadeType.ALL)
+    private List<Movimiento> movimientos = new ArrayList<Movimiento>();
 
     public String getMoneda() {
         return moneda;
@@ -46,11 +51,42 @@ public class Cuenta {
         this.saldoDisponible = saldoDisponible;
     }
 
-    public List<Movimiento> getListaMovimientos() {
-        return listaMovimientos;
+    public List<Movimiento> getMovimiento() {
+        return movimientos;
     }
 
-    public void setListaMovimientos(List<Movimiento> listaMovimientos) {
-        this.listaMovimientos = listaMovimientos;
+    public void setMovimiento(List<Movimiento> movimientos) {
+        this.movimientos = movimientos;
     }
+
+    public void agregarMovimiento(Movimiento movimiento) {
+        movimiento.setCuenta(this);
+        this.movimientos.add(movimiento);
+        this.setSaldo(this.getSaldo() + movimiento.getImporte());
+    }
+
+    /**
+     * @param billetera the usuario to set
+     */
+
+    public void setBilletera(Billetera billetera) {
+        this.billetera = billetera;
+
+    }
+
+    /**
+     * @return the usuario
+     */
+    public Billetera getBilletera() {
+        return billetera;
+    }
+
+    public int getCuenta_id() {
+        return cuenta_id;
+    }
+
+    public void setCuenta_id(int cuenta_id) {
+        this.cuenta_id = cuenta_id;
+    }
+
 }

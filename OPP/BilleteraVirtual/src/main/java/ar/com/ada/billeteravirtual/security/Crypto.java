@@ -16,7 +16,6 @@ import javax.crypto.spec.SecretKeySpec;
  * Esta clase es solo a nivel educativo inicial. Cualquier problema de diseño o
  * seguridad estara fuera del alcance del proyecto. Debe usarse bajo su
  * responsabilidad. Basado en Source:
- * https://howtodoinjava.com/security/aes-256-encryption-decryption/
  * Con algunos
  * cambios
  */
@@ -25,7 +24,7 @@ public class Crypto {
     // En la vida real, la secretKey estara guardada en algun lado en forma segura y
     // No sera
     // estatica
-    private static String secretKey = "las papas dia no son tan ricas!!!!";
+    private static String secretKey = "boooooooooom!!!!";
 
     public static String encrypt(String strToEncrypt, String salt) {
         try {
@@ -33,7 +32,7 @@ public class Crypto {
             IvParameterSpec ivspec = new IvParameterSpec(iv);
 
             SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
-            KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), salt.getBytes(), 65536, 256);
+            KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), salt.getBytes(), 65536, 128);
             SecretKey tmp = factory.generateSecret(spec);
             SecretKeySpec secretKey = new SecretKeySpec(tmp.getEncoded(), "AES");
 
@@ -52,7 +51,7 @@ public class Crypto {
             IvParameterSpec ivspec = new IvParameterSpec(iv);
 
             SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
-            KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), salt.getBytes(), 65536, 256);
+            KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), salt.getBytes(), 65536, 128);
             SecretKey tmp = factory.generateSecret(spec);
             SecretKeySpec secretKey = new SecretKeySpec(tmp.getEncoded(), "AES");
 
