@@ -22,7 +22,7 @@ public class Cuenta {
 
     private double saldo;
 
-    @Column(name = "saldo_disponible")
+    @Column(name = "saldodisponible")
     private double saldoDisponible;
 
     @ManyToOne

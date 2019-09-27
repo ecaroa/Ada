@@ -20,31 +20,31 @@ public class Movimiento {
     @JoinColumn(name = "cuenta_id", referencedColumnName = "cuenta_id")
     private Cuenta cuenta;
 
-    @Column(name = "fecha_movimiento")
+    @Column(name = "fechamov")
     private Date fechaMovimiento;
 
     private double importe;
 
-    @Column(name = "tipo_operacion")
+    @Column(name = "tipooperacion")
     private String tipoOperacion;
 
-    @Column(name = "concepto_operacion")
+    @Column(name = "conceptooperacion")
     private String conceptoOperacion;
 
     private String detalle;
 
     private int estado;
 
-    @Column(name = "de_usuario_id")
+    @Column(name = "deusuario_id")
     private int deUsuarioId;
 
-    @Column(name = "a_usuario_id")
+    @Column(name = "ausuario_id")
     private int aUsuarioId;
 
-    @Column(name = "de_cuenta_id")
+    @Column(name = "cuentaorigen_id")
     private int deCuentaId;
 
-    @Column(name = "a_cuenta_id")
+    @Column(name = "cuentadestino_id")
     private int aCuentaId;
 
     public int getMovimientoId() {

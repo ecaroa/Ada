@@ -14,9 +14,10 @@
         
     <mapping class="ar.com.ada.billeteravirtual.Persona" />
     <mapping class="ar.com.ada.billeteravirtual.Usuario" />
-    <mapping class="ar.com.ada.billeteravirtual.Movimiento" />
-    <mapping class="ar.com.ada.billeteravirtual.Cuenta" />
     <mapping class="ar.com.ada.billeteravirtual.Billetera" />
+    <mapping class="ar.com.ada.billeteravirtual.Cuenta" />
+    <mapping class="ar.com.ada.billeteravirtual.Movimiento" />
+
      
   </session-factory>
 </hibernate-configuration>
