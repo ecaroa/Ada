@@ -75,11 +75,15 @@ public class Usuario {
         this.userEmail = userEmail;
     }
 
-    
-    @Override
-    public String toString() {
-        return "Usuario [User Name=" + userName + ", Password=" + password + ", User Email=" + userEmail + "]";
+        public Persona getPersona() {
+        return persona;
     }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
+
 /*
     public int getPersonaId() {
         return personaId;
@@ -93,14 +97,6 @@ public class Usuario {
         this.personaId = personaId;
     }*/
     
-    public Persona getPersona() {
-        return persona;
-    }
-
-    public void setPersona(Persona persona) {
-        this.persona = persona;
-    }
-
     /*public String getEmail() {
         return email;
     }

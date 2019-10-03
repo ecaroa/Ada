@@ -74,14 +74,7 @@ public class Persona {
         this.edad = edad;
     }
 
-    @Override
-    public String toString() {
-        if (this.usuario != null)
-            return "Persona [dni=" + dni + ", edad=" + edad + ", nombre=" + nombre + ", usuario= "
-                    + usuario.getUserName() + "]";
-        else
-            return "Persona [dni=" + dni + ", edad=" + edad + ", nombre=" + nombre + "]";
-    }
+
 
     public String getEmail() {
         return email;
@@ -91,6 +84,9 @@ public class Persona {
         this.email = email;
     }
 
+	public void setPersona(Persona p) {
+    }
+    
     /**
      * @param usuario the usuario to set
      */

@@ -26,14 +26,14 @@ public class Movimiento {
     private double importe;
 
     @Column(name = "tipooperacion")
-    private String tipoOperacion;
+    private String tipoOperacion; // "Entrada" "Salida"
 
     @Column(name = "conceptooperacion")
-    private String conceptoOperacion;
+    private String conceptoOperacion;// "Pagos" "Deposito" "Transferencia" "Cobro"
 
     private String detalle;
 
-    private int estado;
+    private int estado;// "Aprobado" "Pendiente" "Rechazado"
 
     @Column(name = "deusuario_id")
     private int deUsuarioId;
@@ -46,6 +46,9 @@ public class Movimiento {
 
     @Column(name = "cuentadestino_id")
     private int aCuentaId;
+
+    public  Movimiento(){        
+    }
 
     public int getMovimientoId() {
         return movimientoId;
@@ -61,6 +64,7 @@ public class Movimiento {
 
     public void setCuenta(Cuenta cuenta) {
         this.cuenta = cuenta;
+        this.cuenta.getMovimientos().add(this);
     }
 
     public Date getFechaMovimiento() {
@@ -145,4 +149,30 @@ public class Movimiento {
         this.tipoOperacion = tipoOperacion;
     }
 
+    /**
+     * Este constructor crea un movimiento inicial. Hay que sacar el print y
+     * adaptarlo para generar distintos movimientos, no solo inicial.
+     * @param c
+     * @param u
+     */
+    public Movimiento(Cuenta c, Usuario u) {
+        System.out.println("Gracias por crear tu billetera! te regalamos " + c.getMoneda() + " 100 para que empieces a usarla.");
+        Date f = new Date();
+        this.setConceptoOperacion("Carga inicial");
+        this.setImporte(100);
+        this.setTipoOperacion("Entrada");
+        this.setFechaMovimiento(f);
+        this.setDeCuentaId(c.getCuentaId());
+        this.setACuentaId(c.getCuentaId());
+        this.setAUsuarioId(u.getUsuarioId());
+        this.setDeUsuarioId(u.getUsuarioId());
+        if (this.getTipoOperacion().equals("Entrada")) {
+            c.setSaldo(c.getSaldo() + this.getImporte());
+            c.setSaldoDisponible(c.getSaldo());
+        } else {
+            c.setSaldo(c.getSaldo() - this.getImporte());
+            c.setSaldoDisponible(c.getSaldo());
+        }
+        this.setCuenta(c);
+    }
 }
