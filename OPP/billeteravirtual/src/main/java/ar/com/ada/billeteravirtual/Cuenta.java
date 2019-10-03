@@ -90,11 +90,21 @@ public class Cuenta {
         m.setDetalle(detalle);
         m.setFechaMovimiento(new Date());
         m.setDeUsuarioId(usuarioDe);
-        m.setaUsuarioId(usuarioDe);
+        m.setAUsuarioId(usuarioDe);
         m.setDeCuentaId(this.cuentaId);
-        m.setaCuentaId(this.cuentaId);
+        m.setACuentaId(this.cuentaId);
 
         this.movimientos.add(m);
     }
+
+    public void agregarMovimiento(Movimiento movimiento){
+
+        movimiento.setCuenta(this);
+        movimientos.add(movimiento);
+        this.setSaldo(this.getSaldo()+ movimiento.getImporte());
+        this.setSaldoDisponible(this.getSaldo());
+        
+    }
+
 
 }

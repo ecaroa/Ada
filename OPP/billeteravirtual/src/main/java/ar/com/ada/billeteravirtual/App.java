@@ -60,6 +60,11 @@ public class App {
                     listarPorNombre();
                     break;
 
+                case 6:
+                    transferencia();
+                    break;
+                    
+
                 default:
                     System.out.println("La opcion no es correcta.");
                     break;
@@ -357,6 +362,65 @@ public class App {
         }
     }
 
+    
+    public static void transferencia(){
+        System.out.println("Ingrese id de cuenta origen");
+        int id = Teclado.nextInt();
+        Teclado.nextLine();
+        Persona personaEncontrada = ABMPersona.read(id);
+        
+        System.out.println("Ingrese id de cuenta destino");
+        int id2 = Teclado.nextInt();
+        Teclado.nextLine();
+        Persona personaEncontrada2 = ABMPersona.read(id2);
+        
+        if (personaEncontrada == null) {
+            System.out.println("Persona no encontrada.");
+
+        } else {
+
+            try {
+                Billetera b2 = ABMBilletera.read(id);
+                Movimiento m2 = new Movimiento();
+                m2.setImporte(-50);
+                m2.setDeUsuarioId(u.getUsuarioId());
+                m2.setaUsuarioId(37);
+                m2.setCuentaOrigenId(b2.getCuentas().get(0).getCuentaId());
+                m2.setCuentaDestinoId(b3.getCuentas().get(0).getCuentaId());
+                m2.setConceptoDeOperacion("Envío");
+                m2.setTipoDeOperacion("Enviar dinero");
+                m2.setEstado(0);
+                m2.setFechaMovimiento(new Date());
+                b2.getCuentas().get(0).agregarMovimiento(m2);
+                m2.setImporte(-25);
+                b2.cuentaPrincipal().agregarMovimiento(usuarioDe, concepto, importe, detalle);;
+                
+                ABMBilletera.update(b2);
+
+                Billetera b3 = ABMBilletera.read(id2);
+                Movimiento m3 = new Movimiento();
+                m3.setImporte(+25);
+                b3.cuentaPrincipal().agregarMovimiento(m3);
+
+                ABMBilletera.update(b3);
+
+                System.out.println("El registro ha sido actualizado.");
+
+
+            } catch (Exception e) {
+                // TODO: handle exception
+                System.out.println("Ocurrio un error.Error: " + e.getCause());
+            }
+
+        }
+    }
+
+
+
+
+        System.out.println("Ingrese id de cuenta destino");
+    }
+
     public static void printOpciones() {
         System.out.println("=======================================");
         System.out.println("");
@@ -365,6 +429,7 @@ public class App {
         System.out.println("Para modificar una persona presione 3.");
         System.out.println("Para ver el listado presione 4.");
         System.out.println("Buscar una persona por nombre especifico(SQL Injection)) 5.");
+        System.out.println("Para transferir dinero aprete 6.");
         System.out.println("Para terminar presione 0.");
         System.out.println("");
         System.out.println("=======================================");

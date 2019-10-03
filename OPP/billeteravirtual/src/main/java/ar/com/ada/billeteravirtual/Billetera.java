@@ -62,4 +62,14 @@ public class Billetera {
     {
         return this.cuentas.get(0).getSaldo();
     }
+
+    public Cuenta cuentaPrincipal(){
+        return getCuentas().get(0);
+    }
+
+    public void agregarMovimiento(Movimiento movimiento){
+        
+        this.getCuentas().get(0).agregarMovimiento(movimiento);
+        
+    }
 }

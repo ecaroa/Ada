@@ -113,11 +113,11 @@ public class Movimiento {
         this.deUsuarioId = deUsuarioId;
     }
 
-    public int getaUsuarioId() {
+    public int getAUsuarioId() {
         return aUsuarioId;
     }
 
-    public void setaUsuarioId(int aUsuarioId) {
+    public void setAUsuarioId(int aUsuarioId) {
         this.aUsuarioId = aUsuarioId;
     }
 
@@ -129,11 +129,11 @@ public class Movimiento {
         this.deCuentaId = deCuentaId;
     }
 
-    public int getaCuentaId() {
+    public int getACuentaId() {
         return aCuentaId;
     }
 
-    public void setaCuentaId(int aCuentaId) {
+    public void setACuentaId(int aCuentaId) {
         this.aCuentaId = aCuentaId;
     }
 
