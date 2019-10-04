@@ -1,6 +1,6 @@
 package ar.com.ada.billeteravirtual.excepciones;
 
-import ar.com.ada.billeteravirtual.*;
+import ar.com.ada.billeteravirtual.Persona;
 
 /**
  * PersonaDNIException

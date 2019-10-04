@@ -18,10 +18,7 @@ public class PersonaManager {
     protected void setup() {
 
         java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
-        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure() // configures settings
-                                                                                                  // from
-                                                                                                  // hibernate.cfg.xml
-                .build();
+        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build(); // configures settings from hibernate.cfg.xml
         try {
             sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
         } catch (Exception ex) {
@@ -41,7 +38,7 @@ public class PersonaManager {
         session.beginTransaction();
 
         session.save(persona);
-        //Si no activo el cascade all en el OnToOne del usuario, tengo que forzar la llamada
+        //Si no activo el cascade all en el OneToOne del usuario, tengo que forzar la llamada
         //session.save(persona.getUsuario());
   
         session.getTransaction().commit();

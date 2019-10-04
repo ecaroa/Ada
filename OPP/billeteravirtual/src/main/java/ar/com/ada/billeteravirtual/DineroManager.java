@@ -1,6 +1,6 @@
 package ar.com.ada.billeteravirtual;
 
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 
 import javax.persistence.Query;
@@ -12,9 +12,9 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 /**
- * BilleteraManager
+ * DineroManager
  */
-public class BilleteraManager {
+public class DineroManager {
 
     protected SessionFactory sessionFactory;
 
@@ -38,44 +38,44 @@ public class BilleteraManager {
         sessionFactory.close();
     }
 
-    protected void create(Billetera billetera) {
+    protected void create(Dinero dinero) {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        session.save(billetera);
+        session.save(dinero);
   
         session.getTransaction().commit();
         session.close();
     }
 
-    public Billetera read(int billeteraId) {
+    public Dinero read(int dineroId) {
         Session session = sessionFactory.openSession();
 
-        Billetera billetera = session.get(Billetera.class, billeteraId);
+        Dinero dinero = session.get(Dinero.class, dineroId);
 
         session.close();
 
-        return billetera;
+        return dinero;
     }
 
-    protected void update(Billetera billetera) {
+    protected void update(Dinero dinero) {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        session.update(billetera);
+        session.update(dinero);
 
         session.getTransaction().commit();
         session.close();
     }
 
-    protected void delete(Billetera billetera) {
+    protected void delete(Dinero dinero) {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        session.delete(billetera);
+        session.delete(dinero);
 
         session.getTransaction().commit();
         session.close();
@@ -85,17 +85,17 @@ public class BilleteraManager {
      * Este metodo en la vida real no debe existir ya qeu puede haber miles de usuarios
      * @return
      */
-    public List<Billetera> buscarTodas() {
+    public List<Dinero> buscarTodos() {
 
         Session session = sessionFactory.openSession();
 
         ///NUNCA HARCODEAR SQLs nativos en la aplicacion.
         //ESTO es solo para nivel educativo
-        Query query = session.createNativeQuery("SELECT * FROM billetera", Billetera.class);
+        Query query = session.createNativeQuery("SELECT * FROM dinero", Dinero.class);
 
-        List<Billetera> todas = query.getResultList();
+        List<Dinero> todos = query.getResultList();
 
-        return todas;
+        return todos;
 
     }
 }

@@ -1,14 +1,16 @@
 package ar.com.ada.billeteravirtual;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import javax.persistence.*;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import java.util.*;
 
 /**
  * Cuenta
  */
+
 @Entity
 @Table(name = "cuenta")
 public class Cuenta {
@@ -17,20 +19,42 @@ public class Cuenta {
     @Column(name = "cuenta_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cuentaId;
-
-    private String moneda;
-
-    private double saldo;
-
-    @Column(name = "saldodisponible")
+    private String moneda; // monedaId?
+    private double saldo; // (balance)
     private double saldoDisponible;
-
+    // private String nroCuenta; // (univoco)
     @ManyToOne
     @JoinColumn(name = "billetera_id", referencedColumnName = "billetera_id")
     private Billetera billetera;
+    @OneToMany (mappedBy = "cuenta", cascade = CascadeType.ALL)
+    @LazyCollection (LazyCollectionOption.FALSE)
+    private List<Movimiento> movimientos = new ArrayList<Movimiento>(); // (puede necesitar tabla intermedia)
 
-    @OneToMany(mappedBy = "cuenta", cascade = CascadeType.ALL)
-    private List<Movimiento> movimientos = new ArrayList<Movimiento>();
+    public static Scanner Teclado = new Scanner(System.in);
+
+    void dineroPendiente() {
+
+    }
+
+    void ultimosMovimientos() {
+
+    }
+
+    void dineroIngresado() {
+
+    }
+
+    void dineroExtraido() {
+
+    }
+
+    public Cuenta(int cuentaId, String moneda) {
+        this.cuentaId = cuentaId;
+        this.moneda = moneda;
+    }
+
+    public Cuenta() {
+    }
 
     public int getCuentaId() {
         return cuentaId;
@@ -56,20 +80,13 @@ public class Cuenta {
         this.saldo = saldo;
     }
 
-    public double getSaldoDisponible() {
-        return saldoDisponible;
-    }
-
-    public void setSaldoDisponible(double saldoDisponible) {
-        this.saldoDisponible = saldoDisponible;
-    }
-
     public Billetera getBilletera() {
         return billetera;
     }
 
     public void setBilletera(Billetera billetera) {
         this.billetera = billetera;
+        this.billetera.getCuentas().add(this);
     }
 
     public List<Movimiento> getMovimientos() {
@@ -80,31 +97,38 @@ public class Cuenta {
         this.movimientos = movimientos;
     }
 
-    public void agregarPlata(int usuarioDe, String concepto, double importe, String detalle) {
-        Movimiento m = new Movimiento();
-
-        m.setCuenta(this);
-        m.setTipoOperacion("INGRESO");
-        m.setImporte(importe);
-        m.setConceptoOperacion(concepto);
-        m.setDetalle(detalle);
-        m.setFechaMovimiento(new Date());
-        m.setDeUsuarioId(usuarioDe);
-        m.setAUsuarioId(usuarioDe);
-        m.setDeCuentaId(this.cuentaId);
-        m.setACuentaId(this.cuentaId);
-
-        this.movimientos.add(m);
+    //falta poner límite para no tener saldos negativos
+    public double getSaldoDisponible() {
+        return saldo;
     }
 
-    public void agregarMovimiento(Movimiento movimiento){
+    public void setSaldoDisponible(double saldoDisponible) {
+        this.saldoDisponible = saldoDisponible;
+    }
 
-        movimiento.setCuenta(this);
-        movimientos.add(movimiento);
-        this.setSaldo(this.getSaldo()+ movimiento.getImporte());
-        this.setSaldoDisponible(this.getSaldo());
+    // Adaptar para sacar el print del método.
+    public Cuenta(Billetera b) {
+        System.out.println("Creacion de cuenta. Seleccione la moneda: \n1: U$S \n2: AR$");
+        int opcionMoneda = Teclado.nextInt();
+        switch (opcionMoneda) {
+        case 1:
+            this.setMoneda("U$S");
+            break;
+        case 2:
+            this.setMoneda("AR$");
+            break;
+        default:
+            break;
+        }
+
+    }
+
+    public Usuario getUsuario(){
+
+        Usuario u = this.getBilletera().getPersona().getUsuario();
+        return u;
         
     }
 
-
+    
 }

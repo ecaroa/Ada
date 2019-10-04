@@ -1,8 +1,14 @@
 package ar.com.ada.billeteravirtual;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-import ar.com.ada.billeteravirtual.*;
 import ar.com.ada.billeteravirtual.excepciones.PersonaEdadException;
 
 /**
@@ -20,12 +26,13 @@ public class Persona {
     private String dni;
     private int edad;
     private String email;
-
-    @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL)
-    private Usuario usuario;
-
     @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL)
     private Billetera billetera;
+    //@Column(name = "billetera_id")
+    //private int billeteraId;
+    //@JoinColumn(name= "persona_id", referencedColumnName = "persona_id")
+    @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL)
+    private Usuario usuario;
 
     public Persona(String nombre, String dni, int edad, String email) {
         this.nombre = nombre;
@@ -66,15 +73,15 @@ public class Persona {
     }
 
     public void setEdad(int edad) throws PersonaEdadException {
-        if (edad < 18) {
-            // no se ejecuta nada mas despues del throw
+        if(edad < 18)
+        {
+            //no se ejecuta nada mas despues del throw
             throw new PersonaEdadException(this, "ocurrio un error con la edad");
+
 
         }
         this.edad = edad;
     }
-
-
 
     public String getEmail() {
         return email;
@@ -85,16 +92,15 @@ public class Persona {
     }
 
 	public void setPersona(Persona p) {
-    }
-    
-    /**
+	}
+
+   /**
      * @param usuario the usuario to set
      */
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-        this.usuario.setPersona(this); // Vinculamos ambos objetos entre si
+        this.usuario.setPersona(this); //Vinculamos ambos objetos entre si
     }
-
     /**
      * @return the usuario
      */
@@ -110,4 +116,6 @@ public class Persona {
         this.billetera = billetera;
         this.billetera.setPersona(this);
     }
+
+    
 }

@@ -1,6 +1,6 @@
 package ar.com.ada.billeteravirtual;
 
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 
 import javax.persistence.Query;
@@ -12,9 +12,9 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 /**
- * BilleteraManager
+ * MovimientoManager
  */
-public class BilleteraManager {
+public class MovimientoManager {
 
     protected SessionFactory sessionFactory;
 
@@ -38,44 +38,44 @@ public class BilleteraManager {
         sessionFactory.close();
     }
 
-    protected void create(Billetera billetera) {
+    protected void create(Movimiento movimiento) {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        session.save(billetera);
+        session.save(movimiento);
   
         session.getTransaction().commit();
         session.close();
     }
 
-    public Billetera read(int billeteraId) {
+    public Movimiento read(int movimientoId) {
         Session session = sessionFactory.openSession();
 
-        Billetera billetera = session.get(Billetera.class, billeteraId);
+        Movimiento movimiento = session.get(Movimiento.class, movimientoId);
 
         session.close();
 
-        return billetera;
+        return movimiento;
     }
 
-    protected void update(Billetera billetera) {
+    protected void update(Movimiento movimiento) {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        session.update(billetera);
+        session.update(movimiento);
 
         session.getTransaction().commit();
         session.close();
     }
 
-    protected void delete(Billetera billetera) {
+    protected void delete(Movimiento movimiento) {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        session.delete(billetera);
+        session.delete(movimiento);
 
         session.getTransaction().commit();
         session.close();
@@ -85,17 +85,17 @@ public class BilleteraManager {
      * Este metodo en la vida real no debe existir ya qeu puede haber miles de usuarios
      * @return
      */
-    public List<Billetera> buscarTodas() {
+    public List<Movimiento> buscarTodos() {
 
         Session session = sessionFactory.openSession();
 
         ///NUNCA HARCODEAR SQLs nativos en la aplicacion.
         //ESTO es solo para nivel educativo
-        Query query = session.createNativeQuery("SELECT * FROM billetera", Billetera.class);
+        Query query = session.createNativeQuery("SELECT * FROM movimiento", Movimiento.class);
 
-        List<Billetera> todas = query.getResultList();
+        List<Movimiento> todos = query.getResultList();
 
-        return todas;
+        return todos;
 
     }
 }

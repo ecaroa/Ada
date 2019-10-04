@@ -1,6 +1,6 @@
 package ar.com.ada.billeteravirtual;
 
-import java.util.Date;
+import java.util.*;
 
 import javax.persistence.*;
 
@@ -15,39 +15,27 @@ public class Movimiento {
     @Column(name = "movimiento_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int movimientoId;
-
+    private Date fechaMov;
+    private double importe;
+    // private Coordenada ubicacion (fase 2);
+    private String tipooperacion; // "Entrada" "Salida"
+    private String conceptooperacion; // "Pagos" "Deposito" "Transferencia" "Cobro"
+    private String detalle;
+    private int estado; // "Aprobado" "Pendiente" "Rechazado"
     @ManyToOne
     @JoinColumn(name = "cuenta_id", referencedColumnName = "cuenta_id")
     private Cuenta cuenta;
-
-    @Column(name = "fechamov")
-    private Date fechaMovimiento;
-
-    private double importe;
-
-    @Column(name = "tipooperacion")
-    private String tipoOperacion; // "Entrada" "Salida"
-
-    @Column(name = "conceptooperacion")
-    private String conceptoOperacion;// "Pagos" "Deposito" "Transferencia" "Cobro"
-
-    private String detalle;
-
-    private int estado;// "Aprobado" "Pendiente" "Rechazado"
-
     @Column(name = "deusuario_id")
     private int deUsuarioId;
-
     @Column(name = "ausuario_id")
     private int aUsuarioId;
 
     @Column(name = "cuentaorigen_id")
-    private int deCuentaId;
-
+    private int cuentaOrigenId;
     @Column(name = "cuentadestino_id")
-    private int aCuentaId;
+    private int cuentaDestinoId;
 
-    public  Movimiento(){        
+    public Movimiento() {
     }
 
     public int getMovimientoId() {
@@ -58,39 +46,12 @@ public class Movimiento {
         this.movimientoId = movimientoId;
     }
 
-    public Cuenta getCuenta() {
-        return cuenta;
+    public Date getFechaMov() {
+        return fechaMov;
     }
 
-    public void setCuenta(Cuenta cuenta) {
-        this.cuenta = cuenta;
-        this.cuenta.getMovimientos().add(this);
-    }
-
-    public Date getFechaMovimiento() {
-        return fechaMovimiento;
-    }
-
-    public void setFechaMovimiento(Date fechaMovimiento) {
-        this.fechaMovimiento = fechaMovimiento;
-    }
-
-    public double getImporte() {
-        return importe;
-    }
-
-    public void setImporte(double importe) {
-        this.importe = importe;
-        this.cuenta.setSaldo(this.cuenta.getSaldo() + importe);
-        this.cuenta.setSaldoDisponible(this.cuenta.getSaldoDisponible() + importe);
-    }
-
-    public String getConceptoOperacion() {
-        return conceptoOperacion;
-    }
-
-    public void setConceptoOperacion(String conceptoOperacion) {
-        this.conceptoOperacion = conceptoOperacion;
+    public void setFechaMov(Date fechaMov) {
+        this.fechaMov = fechaMov;
     }
 
     public String getDetalle() {
@@ -117,56 +78,83 @@ public class Movimiento {
         this.deUsuarioId = deUsuarioId;
     }
 
-    public int getAUsuarioId() {
+    public int getaUsuarioId() {
         return aUsuarioId;
     }
 
-    public void setAUsuarioId(int aUsuarioId) {
+    public void setaUsuarioId(int aUsuarioId) {
         this.aUsuarioId = aUsuarioId;
     }
 
-    public int getDeCuentaId() {
-        return deCuentaId;
+    public int getCuentaDestinoId() {
+        return cuentaDestinoId;
     }
 
-    public void setDeCuentaId(int deCuentaId) {
-        this.deCuentaId = deCuentaId;
+    public void setCuentaDestinoId(int cuentaDestinoId) {
+        this.cuentaDestinoId = cuentaDestinoId;
     }
 
-    public int getACuentaId() {
-        return aCuentaId;
+    public int getCuentaOrigenId() {
+        return cuentaOrigenId;
     }
 
-    public void setACuentaId(int aCuentaId) {
-        this.aCuentaId = aCuentaId;
+    public void setCuentaOrigenId(int cuentaOrigenId) {
+        this.cuentaOrigenId = cuentaOrigenId;
     }
 
-    public String getTipoOperacion() {
-        return tipoOperacion;
+    public double getImporte() {
+        return importe;
     }
 
-    public void setTipoOperacion(String tipoOperacion) {
-        this.tipoOperacion = tipoOperacion;
+    public void setImporte(double importe) {
+        this.importe = importe;
+    }
+
+    public String getTipooperacion() {
+        return tipooperacion;
+    }
+
+    public void setTipooperacion(String tipo) {
+        this.tipooperacion = tipooperacion;
+    }
+
+    public String getConcepto() {
+        return conceptooperacion;
+    }
+
+    public void setConcepto(String concepto) {
+        this.conceptooperacion = concepto;
+    }
+
+    public Cuenta getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
+        this.cuenta.getMovimientos().add(this);
     }
 
     /**
      * Este constructor crea un movimiento inicial. Hay que sacar el print y
      * adaptarlo para generar distintos movimientos, no solo inicial.
+     * 
      * @param c
      * @param u
      */
     public Movimiento(Cuenta c, Usuario u) {
-        System.out.println("Gracias por crear tu billetera! te regalamos " + c.getMoneda() + " 100 para que empieces a usarla.");
+        System.out.println(
+                "Gracias por crear tu billetera! te regalamos " + c.getMoneda() + " 100 para que empieces a usarla.");
         Date f = new Date();
-        this.setConceptoOperacion("Carga inicial");
+        this.setConcepto("Carga inicial");
         this.setImporte(100);
-        this.setTipoOperacion("Entrada");
-        this.setFechaMovimiento(f);
-        this.setDeCuentaId(c.getCuentaId());
-        this.setACuentaId(c.getCuentaId());
-        this.setAUsuarioId(u.getUsuarioId());
+        this.setTipooperacion("Entrada");
+        this.setFechaMov(f);
+        this.setCuentaOrigenId(c.getCuentaId());
+        this.setCuentaDestinoId(c.getCuentaId());
+        this.setaUsuarioId(u.getUsuarioId());
         this.setDeUsuarioId(u.getUsuarioId());
-        if (this.getTipoOperacion().equals("Entrada")) {
+        if (this.getTipooperacion().equals("Entrada")) {
             c.setSaldo(c.getSaldo() + this.getImporte());
             c.setSaldoDisponible(c.getSaldo());
         } else {

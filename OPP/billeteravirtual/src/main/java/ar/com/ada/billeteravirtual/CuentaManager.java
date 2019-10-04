@@ -12,9 +12,9 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 /**
- * BilleteraManager
+ * CuentaManager
  */
-public class BilleteraManager {
+public class CuentaManager {
 
     protected SessionFactory sessionFactory;
 
@@ -38,44 +38,44 @@ public class BilleteraManager {
         sessionFactory.close();
     }
 
-    protected void create(Billetera billetera) {
+    protected void create(Cuenta cuenta) {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        session.save(billetera);
+        session.save(cuenta);
   
         session.getTransaction().commit();
         session.close();
     }
 
-    public Billetera read(int billeteraId) {
+    public Cuenta read(int cuentaId) {
         Session session = sessionFactory.openSession();
 
-        Billetera billetera = session.get(Billetera.class, billeteraId);
+        Cuenta cuenta = session.get(Cuenta.class, cuentaId);
 
         session.close();
 
-        return billetera;
+        return cuenta;
     }
 
-    protected void update(Billetera billetera) {
+    protected void update(Cuenta cuenta) {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        session.update(billetera);
+        session.update(cuenta);
 
         session.getTransaction().commit();
         session.close();
     }
 
-    protected void delete(Billetera billetera) {
+    protected void delete(Cuenta cuenta) {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        session.delete(billetera);
+        session.delete(cuenta);
 
         session.getTransaction().commit();
         session.close();
@@ -85,15 +85,15 @@ public class BilleteraManager {
      * Este metodo en la vida real no debe existir ya qeu puede haber miles de usuarios
      * @return
      */
-    public List<Billetera> buscarTodas() {
+    public List<Cuenta> buscarTodas() {
 
         Session session = sessionFactory.openSession();
 
         ///NUNCA HARCODEAR SQLs nativos en la aplicacion.
         //ESTO es solo para nivel educativo
-        Query query = session.createNativeQuery("SELECT * FROM billetera", Billetera.class);
+        Query query = session.createNativeQuery("SELECT * FROM cuenta", Cuenta.class);
 
-        List<Billetera> todas = query.getResultList();
+        List<Cuenta> todas = query.getResultList();
 
         return todas;
 
