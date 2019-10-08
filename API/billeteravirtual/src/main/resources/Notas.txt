@@ -1,0 +1,11 @@
+Basado en https://www.devglan.com/spring-boot/spring-boot-hibernate-5-example
+
+-Billetera Virtual Restfull API con Hibernate usando SpringBoot 2.0 + Hibernate 5 + MySQL.
+Trabajo en continuacion con la Aplicacion JAVA+Hibernate que se habia comenzado.
+Es solo para demostracion y debera ser completado por las alumnas utilizando todo el codigo que hayan hecho antes.
+
+- Crear carpeta entities y meter todas las clase de logica alli(no los managers).
+- Cambiar TODOs double por BigDecimal (que sean importes). Los BigDecimal para sumarlos ahora deben ser sumados usando .add(otroBigDecimal). BigDecimal debe usarse SOLO para importes.
+- Persona exceptions quedo con sus default serialVersionUID implementado(QuickFix , add generated serial)
+- Generar los repo y services.
+- Codeaaaaaaar WebMethods desde la otra app
