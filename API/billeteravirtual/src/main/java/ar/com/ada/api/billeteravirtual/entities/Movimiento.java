@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Movimiento
  */
@@ -16,7 +18,7 @@ public class Movimiento {
     @Column(name = "movimiento_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int movimientoId;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cuenta_id", referencedColumnName = "cuenta_id")
     private Cuenta cuenta;
@@ -42,10 +44,10 @@ public class Movimiento {
     @Column(name = "ausuario_id")
     private int aUsuarioId;
 
-    @Column(name = "decuenta_id")
+    @Column(name = "cuentaorigen_id")
     private int deCuentaId;
 
-    @Column(name = "acuenta_id")
+    @Column(name = "cuentadestino_id")
     private int aCuentaId;
 
     public int getMovimientoId() {

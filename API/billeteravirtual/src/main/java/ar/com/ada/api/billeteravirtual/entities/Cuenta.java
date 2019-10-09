@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Cuenta
  */
@@ -25,7 +27,7 @@ public class Cuenta {
 
     @Column(name = "saldodisponible")
     private BigDecimal saldoDisponible;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "billetera_id", referencedColumnName = "billetera_id")
     private Billetera billetera;

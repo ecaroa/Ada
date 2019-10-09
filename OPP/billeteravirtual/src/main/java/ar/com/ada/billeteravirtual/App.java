@@ -170,24 +170,24 @@ public class App {
         String moneda;
         int opcionMoneda = Teclado.nextInt();
         switch (opcionMoneda) {
-        case 1:
-            moneda = "U$S";
-            break;
-        case 2:
-            moneda = "AR$";
-            break;
-        default:
-            moneda = null;
-            break;
+            case 1:
+                moneda = "U$S";
+                break;
+            case 2:
+                moneda = "AR$";
+                break;
+            default:
+                moneda = null;
+                break;
+            }
+            if (moneda.equals(null)) {
+                System.out.println("La billetera no posee una cuenta con esa moneda.");
+            } else {
+                System.out.println("El saldo en su cuenta es " + b.consultarSaldo(b, moneda) + ".");
+                System.out.println("El saldo disponible en su cuenta es " + b.consultarSaldoDisponible(b, moneda) + ".");
+            }
+    
         }
-        if (moneda.equals(null)) {
-            System.out.println("La billetera no posee una cuenta con esa moneda.");
-        } else {
-            System.out.println("El saldo en su cuenta es " + b.consultarSaldo(b, moneda) + ".");
-            System.out.println("El saldo disponible en su cuenta es " + b.consultarSaldoDisponible(b, moneda) + ".");
-        }
-
-    }
 
     public static void baja() {
         System.out.println("Ingrese el nombre:");

@@ -54,9 +54,21 @@ public class Billetera {
         cuenta.setBilletera(this);
     }
 
-    public void agregarPlata(BigDecimal plata, String concepto, String detalle) {
-        // Agarro el primero y le meto plata
-        this.cuentas.get(0).agregarPlata(persona.getUsuario().getUsuarioId(), concepto, plata, detalle);
+    public void agregarPlata(BigDecimal plata,String moneda, String concepto, String detalle) {
+        // Agarro el primero y le meto plata (esto se hacia antes porqeu le agregaba a la primer cuenta)
+        //this.cuentas.get(0).agregarPlata(persona.getUsuario().getUsuarioId(), concepto, plata, detalle);
+        this.buscarCuenta(moneda).agregarPlata(persona.getUsuario().getUsuarioId(), concepto, plata, detalle);
+    
+    }
+    private Cuenta buscarCuenta (String moneda){
+        for (Cuenta cta : this.cuentas) {
+            if (moneda.equals(cta.getMoneda())) {
+                return cta;
+            }
+            
+        }
+
+        return null;
     }
 
     public BigDecimal consultarSaldoCuentaUnica()

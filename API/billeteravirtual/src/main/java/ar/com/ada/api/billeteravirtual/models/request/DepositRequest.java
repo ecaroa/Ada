@@ -1,0 +1,14 @@
+package ar.com.ada.api.billeteravirtual.models.request;
+
+import java.math.BigDecimal;
+
+/**
+ * DepositRequest
+ */
+public class DepositRequest {
+
+    public String moneda;
+    public BigDecimal importeADepositar;
+    public String concepto;
+    public String detalle;
+}
