@@ -101,22 +101,26 @@ public class Cuenta {
     }
 
     public void descontarPlata(int usuarioOr, String concepto, BigDecimal importe, String detalle){
-        Movimiento m2 = new Movimiento();
+        Movimiento m = new Movimiento();
 
         m.setCuenta(this);
         m.setTipoOperacion("EGRESO");
         m.setImporte(importe.negate());
         m.setConceptoOperacion(concepto);
         m.setFechaMovimiento(new Date());
-        m.setDeUsuarioId(usuarioOri);
-        m.setaUsuarioId(usuarioOri);
+        m.setDeUsuarioId(usuarioOr);
+        m.setaUsuarioId(usuarioOr);
         m.setDeCuentaId(this.cuentaId);
         m.setaCuentaId(this.cuentaId);
 
     }
 
-    public void tansferencia (int usuarioOr, String concepto, BigDecimal importe, String detalle){
-        Movimiento 
+    public void tansferencia (int usuarioOr, int usuarioDe, String concepto, BigDecimal importe, String detalle){
+        Movimiento m = new Movimiento();
+
+        m.
+
+        
     }
 
 }

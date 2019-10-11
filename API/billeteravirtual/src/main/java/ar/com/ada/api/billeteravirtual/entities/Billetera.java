@@ -67,7 +67,9 @@ public class Billetera {
     
     }
 
-    
+    public void transferencia (BigDecimal plata,String moneda, String concepto, String detalle){
+        
+    }
 
     /* public void transferencia(Billetera bDestino, BigDecimal importe) {
         movimientoTransferencia(-importe, this.getCuentas(), bDestino.getCuentas());
