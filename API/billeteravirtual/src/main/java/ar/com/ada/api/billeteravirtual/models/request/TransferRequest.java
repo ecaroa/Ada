@@ -10,7 +10,6 @@ public class TransferRequest {
     public String email;
     public BigDecimal importeATransferir;
     public String moneda;
-    public String tipo;
     public String concepto;
     public String detalle;
 

@@ -66,7 +66,7 @@ public class BilleteraCotroller {
 
     public TransferResponse postBilleteraTransferir(@PathVariable int id, @RequestBody TransferRequest req){
         Billetera bOrigen = billeteraService.buscarPorId(id);
-        billeteraService.transferencia(bOrigen,req.email, req.importeATransferir, req.moneda,req.tipoOperacion ,req.conceptoOperacion, req.detalle);
+        billeteraService.transferencia(bOrigen,req.email, req.importeATransferir, req.moneda,req.concepto, req.detalle);
         
         billeteraService.grabar(bOrigen);
 

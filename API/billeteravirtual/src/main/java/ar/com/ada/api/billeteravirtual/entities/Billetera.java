@@ -63,7 +63,7 @@ public class Billetera {
     }
 
     public void descontarPlata(BigDecimal plata,String moneda, String concepto, String detalle) {
-        this.buscarCuenta(moneda).agregarPlata(persona.getUsuario().getUsuarioId(), concepto, plata, detalle);
+        this.buscarCuenta(moneda).descontarPlata(persona.getUsuario().getUsuarioId(), concepto, plata, detalle);
     
     }
 
@@ -72,33 +72,6 @@ public class Billetera {
         aBilletera.agregarPlata(plata, moneda, concepto, detalle);
     }
 
-    /* public void transferencia(Billetera bDestino, BigDecimal importe) {
-        movimientoTransferencia(-importe, this.getCuentas(), bDestino.getCuentas());
-        bDestino.movimientoTransferencia(importe, bDestino.getCuentas(), this.getCuentas());
-    } /*
-
-    /**
-     * Hace una transferencia entre cuentas principales.
-     * 
-     * @param importe
-     * @param bOrigen
-     * @param bDestino
-     */
-   /*public void movimientoTransferencia(BigDecimal importe, Cuenta cuentaDesde, Cuenta cuentaHasta) {
-        Movimiento m = new Movimiento();
-        m.setImporte(importe);
-        m.setCuenta(this.getCuentas(0));
-        Date f = new Date();
-        m.setConceptoOperacion(" ");
-        m.setTipoOperacion("Transferencia");
-        m.setFechaMovimiento(f);
-        m.setDeCuentaId(cuentaDesde.getCuentaId());
-        m.setaCuentaId(cuentaHasta.getCuentaId());
-        m.setDeUsuarioId(cuentaDesde.getUsuario().getUsuarioId());
-        m.setaUsuarioId(cuentaHasta.getUsuario().getUsuarioId());
-        cuentaDesde.setSaldo(cuentaDesde.getSaldo() + importe);
-        cuentaDesde.setSaldoDisponible(cuentaDesde.getSaldoDisponible() + importe);
-    } */
 
     private Cuenta buscarCuenta (String moneda){
         for (Cuenta cta : this.cuentas) {
