@@ -11,15 +11,17 @@ import ar.com.ada.api.billeteravirtual.repo.BilleteraRepository;
 
 /**
  * BilleteraService
+ * 
+ * @param <MovimientoController>
  */
 @Service
-public class BilleteraService {
+public class BilleteraService<MovimientoController> {
     @Autowired
     BilleteraRepository billeRepo;
 
-    public Billetera buscarPorId(int id) {
+    public Billetera buscarPorId(Billetera bD) {
 
-        Optional<Billetera> b = billeRepo.findById(id);
+        Optional<Billetera> b = billeRepo.findById(bD);
         
         if (b.isPresent())
             return b.get();
@@ -30,8 +32,15 @@ public class BilleteraService {
     {
         this.billeRepo.save(b);
     }
+    
     public void agregarPlata(Billetera billetera, BigDecimal plata,String moneda, String concepto, String detalle) {
      billetera.agregarPlata(plata,moneda , concepto, detalle);
     
     }
+
+    @Autowired
+    MovimientoController  movicontrol;
+
+
+
 }

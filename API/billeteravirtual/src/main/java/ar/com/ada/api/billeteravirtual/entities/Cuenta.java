@@ -100,4 +100,23 @@ public class Cuenta {
         this.movimientos.add(m);
     }
 
+    public void descontarPlata(int usuarioOr, String concepto, BigDecimal importe, String detalle){
+        Movimiento m2 = new Movimiento();
+
+        m.setCuenta(this);
+        m.setTipoOperacion("EGRESO");
+        m.setImporte(importe.negate());
+        m.setConceptoOperacion(concepto);
+        m.setFechaMovimiento(new Date());
+        m.setDeUsuarioId(usuarioOri);
+        m.setaUsuarioId(usuarioOri);
+        m.setDeCuentaId(this.cuentaId);
+        m.setaCuentaId(this.cuentaId);
+
+    }
+
+    public void tansferencia (int usuarioOr, String concepto, BigDecimal importe, String detalle){
+        Movimiento 
+    }
+
 }

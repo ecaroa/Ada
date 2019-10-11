@@ -78,10 +78,10 @@ public class Movimiento {
         return importe;
     }
 
-    public void setImporte(BigDecimal importe) {
-        this.importe = importe;
-        this.cuenta.setSaldo(this.cuenta.getSaldo().add(importe));
-        this.cuenta.setSaldoDisponible(this.cuenta.getSaldoDisponible().add(importe));
+    public void setImporte(BigDecimal importe2) {
+        this.importe = importe2;
+        this.cuenta.setSaldo(this.cuenta.getSaldo().add(importe2));
+        this.cuenta.setSaldoDisponible(this.cuenta.getSaldoDisponible().add(importe2));
     }
 
     public String getConceptoOperacion() {

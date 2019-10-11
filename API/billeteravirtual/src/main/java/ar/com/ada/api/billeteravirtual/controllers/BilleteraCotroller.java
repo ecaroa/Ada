@@ -14,8 +14,10 @@ import antlr.collections.List;
 import ar.com.ada.api.billeteravirtual.entities.Billetera;
 import ar.com.ada.api.billeteravirtual.entities.Cuenta;
 import ar.com.ada.api.billeteravirtual.models.request.DepositRequest;
+import ar.com.ada.api.billeteravirtual.models.request.TransferRequest;
 import ar.com.ada.api.billeteravirtual.models.response.DepositoResponse;
 import ar.com.ada.api.billeteravirtual.models.response.SaldoResponse;
+import ar.com.ada.api.billeteravirtual.models.response.TransferResponse;
 import ar.com.ada.api.billeteravirtual.services.BilleteraService;
 
 /**
@@ -59,5 +61,12 @@ public class BilleteraCotroller {
         return r;
 
     }
+
+    @PostMapping("/billeteras/{id}/traferencias/{id2}")
+
+    public TransferResponse setBilleteraById(@PathVariable int bO, @PathVariable int bD, @RequestBody TransferRequest req);
+        Billetera bO = billeteraService.buscarPorId(bO);
+        Billetera bD = billeteraService.buscarPorId(bD);
+        billeteraService.transferencia
 
 }
