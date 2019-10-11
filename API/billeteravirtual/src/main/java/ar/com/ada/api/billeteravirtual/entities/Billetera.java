@@ -67,8 +67,9 @@ public class Billetera {
     
     }
 
-    public void transferencia (BigDecimal plata,String moneda, String concepto, String detalle){
-        
+    public void transferencia (Billetera aBilletera,BigDecimal plata,String moneda, String concepto, String detalle){
+        this.descontarPlata(plata, moneda, concepto, detalle);
+        aBilletera.agregarPlata(plata, moneda, concepto, detalle);
     }
 
     /* public void transferencia(Billetera bDestino, BigDecimal importe) {

@@ -7,9 +7,11 @@ import java.math.BigDecimal;
  */
 public class TransferRequest {
 
+    public String email;
     public BigDecimal importeATransferir;
-    public String tipoOperacion;
-    public String conceptoOperacion;
+    public String moneda;
+    public String tipo;
+    public String concepto;
     public String detalle;
 
 }

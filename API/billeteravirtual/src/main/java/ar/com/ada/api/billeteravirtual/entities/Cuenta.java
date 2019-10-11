@@ -83,7 +83,7 @@ public class Cuenta {
         this.movimientos = movimientos;
     }
 
-    public void agregarPlata(int usuarioDe, String concepto, BigDecimal importe, String detalle) {
+    public void agregarPlata(int usuarioDe,String concepto, BigDecimal importe, String detalle) {
         Movimiento m = new Movimiento();
 
         m.setCuenta(this);
@@ -115,12 +115,5 @@ public class Cuenta {
 
     }
 
-    public void tansferencia (int usuarioOr, int usuarioDe, String concepto, BigDecimal importe, String detalle){
-        Movimiento m = new Movimiento();
-
-        m.
-
-        
-    }
 
 }

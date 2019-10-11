@@ -62,11 +62,23 @@ public class BilleteraCotroller {
 
     }
 
-    @PostMapping("/billeteras/{id}/traferencias/{id2}")
+    @PostMapping("/billeteras/{id}/traferencias/")
 
-    public TransferResponse setBilleteraById(@PathVariable int bO, @PathVariable int bD, @RequestBody TransferRequest req);
-        Billetera bO = billeteraService.buscarPorId(bO);
-        Billetera bD = billeteraService.buscarPorId(bD);
-        billeteraService.transferencia
+    public TransferResponse postBilleteraTransferir(@PathVariable int id, @RequestBody TransferRequest req){
+        Billetera bOrigen = billeteraService.buscarPorId(id);
+        billeteraService.transferencia(bOrigen,req.email, req.importeATransferir, req.moneda,req.tipoOperacion ,req.conceptoOperacion, req.detalle);
+        
+        billeteraService.grabar(bOrigen);
+
+        TransferResponse r = new TransferResponse();
+        r.isOk = true;
+        r.message = "Transferencia con exito";
+
+        return r;
+
+
+
+    }
+   
 
 }

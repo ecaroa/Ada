@@ -29,5 +29,10 @@ public class UsuarioService {
         return null;
     }
 
+    public Usuario buscarPorEmail(String email){
+
+        return repo.findByUserEmail(email);
+
+    }
     
 }

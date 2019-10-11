@@ -9,6 +9,7 @@ public class DepositRequest {
 
     public String moneda;
     public BigDecimal importeADepositar;
+    public String tipo;
     public String concepto;
     public String detalle;
 }
