@@ -19,8 +19,12 @@ public class AuthController {
         RegistrationResponse r = new RegistrationResponse();
         //aca creamos la persona y el usuario a travez del service.
 
-        Persona persona = new Persona();
-        persona.setEmail(req.email);   
+        /*Persona persona = new Persona();
+        persona.setNombre(req.nombre);
+        persona.setDni(req.dni);
+        persona.setEdad(req.edad);
+        persona.setEmail(req.email);   */
+
 
 
         r.isOk = true;

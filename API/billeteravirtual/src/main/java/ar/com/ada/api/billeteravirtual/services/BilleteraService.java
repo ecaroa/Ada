@@ -7,8 +7,10 @@ import java.math.BigDecimal;
 import java.util.*;
 
 import ar.com.ada.api.billeteravirtual.entities.Billetera;
+import ar.com.ada.api.billeteravirtual.entities.Cuenta;
 import ar.com.ada.api.billeteravirtual.entities.Movimiento;
 import ar.com.ada.api.billeteravirtual.repo.BilleteraRepository;
+import ar.com.ada.api.billeteravirtual.repo.MovimientoRepository;
 
 /**
  * BilleteraService
@@ -22,6 +24,9 @@ public class BilleteraService<MovimientoController> {
 
     @Autowired
     UsuarioService usuarioService;
+
+    @Autowired
+    MovimientoRepository movRepo;
 
     public Billetera buscarPorId(Integer bD) {
 
@@ -52,6 +57,23 @@ public class BilleteraService<MovimientoController> {
         deBilletera.transferencia(aBilletera, plata, moneda, concepto, detalle);
     }
 
+    public Cuenta buscarCuentaPorMoneda(Billetera b, String moneda){
+        for (Cuenta cuenta : b.getCuentas()) {
+            if (cuenta.getMoneda().equals(moneda)) {
+                return cuenta;
+
+                
+            }
+            
+            
+            
+        }
+        return null;
+    }
+
+    public List <Movimiento> buscarMovOrdenados (int billeteraId,String moneda){
+        return movRepo.FindOrderByFech(billeteraId,moneda);
+    }
 
 
 
