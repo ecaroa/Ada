@@ -61,4 +61,7 @@ public class Temperatura {
         this.grados = grados;
     }
 
+    public Temperatura() {
+    }
+
 }

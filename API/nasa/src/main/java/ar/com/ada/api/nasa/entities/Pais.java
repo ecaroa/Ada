@@ -52,4 +52,7 @@ public class Pais {
         this.temperaturas.add(temperatura);
         temperatura.setPais(this);
     }
+
+    public Pais(){
+    }
 }
