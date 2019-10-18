@@ -37,13 +37,13 @@ public class UsuarioService {
 
     }
     
-    public void alta(Usuario usuario,String fullname, int edad, String dni, String email, String password){
+    /* public void alta(Usuario usuario,String fullname, int edad, String dni, String email, String password){
         throw PersonaEdadException();{
             Persona p = new Persona();
             p.setNombre(fullname);
             p.setDni();
 
-     }
+     } */
 
     
 }

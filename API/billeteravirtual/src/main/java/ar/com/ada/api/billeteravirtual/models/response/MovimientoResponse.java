@@ -3,7 +3,6 @@ package ar.com.ada.api.billeteravirtual.models.response;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import ar.com.ada.api.billeteravirtual.entities.Cuenta;
 
 /**
  * MovimientoResponse

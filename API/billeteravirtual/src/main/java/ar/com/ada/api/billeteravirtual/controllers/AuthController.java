@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import ar.com.ada.api.billeteravirtual.entities.Persona;
+
 import ar.com.ada.api.billeteravirtual.models.request.RegistrationRequest;
 import ar.com.ada.api.billeteravirtual.models.response.RegistrationResponse;;
 
