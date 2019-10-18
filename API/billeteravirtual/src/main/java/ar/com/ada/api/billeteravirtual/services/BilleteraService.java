@@ -15,10 +15,9 @@ import ar.com.ada.api.billeteravirtual.repo.MovimientoRepository;
 /**
  * BilleteraService
  * 
- * @param <MovimientoController>
  */
 @Service
-public class BilleteraService<MovimientoController> {
+public class BilleteraService {
     @Autowired
     BilleteraRepository billeRepo;
 
