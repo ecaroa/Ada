@@ -13,7 +13,7 @@ import java.util.*;
  */
 @Entity
 @Table (name = "pais")
-public class Pais {
+public class  Pais {
 
     @Id
     @Column(name="pais_id")
