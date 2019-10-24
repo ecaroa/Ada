@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.com.ada.api.billeteravirtual.entities.Persona;
 import ar.com.ada.api.billeteravirtual.repo.PersonaRepository;
-import ar.com.ada.api.billeteravirtual.entities.*;
 
 /**
  * PersonaService
@@ -41,6 +41,11 @@ public class PersonaService {
         if (p.isPresent())
             return p.get();
         return null;
+    }
+
+        public void grabar(Persona p)
+    {
+        repo.save(p);
     }
 
 }
