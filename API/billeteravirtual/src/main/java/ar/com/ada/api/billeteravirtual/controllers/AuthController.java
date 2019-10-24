@@ -2,6 +2,7 @@ package ar.com.ada.api.billeteravirtual.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,7 +55,7 @@ public class AuthController {
 
         usuarioService.login(authenticationRequest.username, authenticationRequest.password);
 
-        final UserDetailS userDetails = userDetailsService
+        final UserDetails userDetails = userDetailsService
             .loadUserByUsername(authenticationRequest.username);
 
         final String token = jwtTokenUtil.generateToken(userDetails);

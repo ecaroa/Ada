@@ -17,7 +17,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import ar.com.ada.api.billeteravirtual.services.JWTUserDetailsService;
 import io.jsonwebtoken.ExpiredJwtException;
-import ar.com.ada.api.billeteravirtual.entities.Usuario;
+
 /**
  * JWTRequestFilter
  */
