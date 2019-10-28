@@ -23,10 +23,10 @@ public class Cuenta {
 
     private String moneda;
 
-    private BigDecimal saldo;
+    private BigDecimal saldo = new BigDecimal(0);
 
     @Column(name = "saldodisponible")
-    private BigDecimal saldoDisponible;
+    private BigDecimal saldoDisponible = new BigDecimal(0);
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "billetera_id", referencedColumnName = "billetera_id")

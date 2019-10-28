@@ -20,7 +20,7 @@ public class UsuarioController {
 
     @GetMapping("/usuario")
     public List<Usuario> getUsuarios()
-    {
+    { 
         List<Usuario> lu = usuarioService.getUsuarios();
         
         return lu;
