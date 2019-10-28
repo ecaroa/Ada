@@ -23,7 +23,7 @@ public class Cuenta {
 
     private String moneda;
 
-    private BigDecimal saldo = new BigDecimal(0);
+    private BigDecimal saldo = new BigDecimal(0); // Al ser un objeto hay que crear un nuevo objeto que empieza en cero
 
     @Column(name = "saldodisponible")
     private BigDecimal saldoDisponible = new BigDecimal(0);
