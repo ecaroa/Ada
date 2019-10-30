@@ -15,6 +15,7 @@ import ar.com.ada.api.billeteravirtual.entities.Usuario;
 import ar.com.ada.api.billeteravirtual.excepciones.PersonaEdadException;
 import ar.com.ada.api.billeteravirtual.repo.UsuarioRepository;
 import ar.com.ada.api.billeteravirtual.security.Crypto;
+import ar.com.ada.api.billeteravirtual.sistema.comms.EmailService;
 
 /**
  * UsuarioService
@@ -29,6 +30,9 @@ public class UsuarioService {
 
     @Autowired
     BilleteraService billeteraService;
+
+    @Autowired
+    EmailService emailService;
 
     public List <Usuario> getUsuarios(){
 
@@ -92,8 +96,13 @@ public class UsuarioService {
         billeteraService.grabar(b);
 
         b.agregarPlata(new BigDecimal(100), "ARS", "Regalo", "Te regalo 100 pesitos");
-
+        
+        emailService.SendEmail(u.getUserEmail(),"Bienvenido a la Billetera Virtual ADA!!!", 
+            "Hola "+p.getNombre()+"\nBienvenido a este hermoso proyecto hecho por todas las alumnas de ADA Backend 8va Mañana\n"+
+            "Ademas te regalamos 100 pesitos" );
+        
         return u.getUsuarioId();
+        
 
     }
      public void login(String username, String password) {

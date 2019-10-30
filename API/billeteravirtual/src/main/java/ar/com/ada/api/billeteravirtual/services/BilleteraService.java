@@ -11,6 +11,7 @@ import ar.com.ada.api.billeteravirtual.entities.Cuenta;
 import ar.com.ada.api.billeteravirtual.entities.Movimiento;
 import ar.com.ada.api.billeteravirtual.repo.BilleteraRepository;
 import ar.com.ada.api.billeteravirtual.repo.MovimientoRepository;
+import ar.com.ada.api.billeteravirtual.sistema.comms.EmailService;
 
 /**
  * BilleteraService
@@ -27,6 +28,10 @@ public class BilleteraService {
     @Autowired
     MovimientoRepository movRepo;
 
+    @Autowired
+    EmailService emailService;
+
+
     public Billetera buscarPorId(Integer bD) {
 
         Optional<Billetera> b = billeRepo.findById(bD);
@@ -42,7 +47,9 @@ public class BilleteraService {
 
     public void agregarPlata(Billetera billetera, BigDecimal plata, String moneda, String concepto, String detalle) {
         billetera.agregarPlata(plata, moneda, concepto, detalle);
-
+        
+        emailService.SendEmail(billetera.getPersona().getUsuario().getUserEmail(),"Su deposito se ha realizado con exito",
+            "Hola "+billetera.getPersona().getNombre()+"\n ha depositado" + plata);
     }
 
     public void descontarPlata(Billetera billetera, BigDecimal plata, String moneda, String concepto, String detalle) {
