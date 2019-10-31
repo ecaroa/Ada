@@ -54,6 +54,9 @@ public class BilleteraService {
 
     public void descontarPlata(Billetera billetera, BigDecimal plata, String moneda, String concepto, String detalle) {
         billetera.descontarPlata(plata, moneda, concepto, detalle);
+
+
+
     }
 
     public void transferencia (Billetera deBilletera, String email ,BigDecimal plata, String moneda, String concepto, String detalle){
@@ -61,6 +64,14 @@ public class BilleteraService {
 
         aBilletera = usuarioService.buscarPorEmail(email).getPersona().getBilletera();
         deBilletera.transferencia(aBilletera, plata, moneda, concepto, detalle);
+
+        emailService.SendEmail(deBilletera.getPersona().getUsuario().getUserEmail(),"Su transferencia se ha realizado con exito",
+            " Se envio al usuario"+ email +"\n la cantidad de " + plata);
+
+         emailService.SendEmail(email,"Aviso de transferencia",
+            "Hola "+ aBilletera +"\n te han depositado" + plata + "el usuario" + deBilletera );
+        
+
     }
 
     public Cuenta buscarCuentaPorMoneda(Billetera b, String moneda){
