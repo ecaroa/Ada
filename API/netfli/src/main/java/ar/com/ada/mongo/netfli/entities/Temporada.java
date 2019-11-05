@@ -29,5 +29,21 @@ public class Temporada {
         return null;
     }
 
+    public int getNumeroTemporada() {
+        return numeroTemporada;
+    }
+
+    public void setNumeroTemporada(int numeroTemporada) {
+        this.numeroTemporada = numeroTemporada;
+    }
+
+    public List<Episodio> getEpisodios() {
+        return episodios;
+    }
+
+    public void setEpisodios(List<Episodio> episodios) {
+        this.episodios = episodios;
+    }
+
     
 }

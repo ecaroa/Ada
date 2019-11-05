@@ -29,7 +29,7 @@ public class UsuarioService {
         return repo.findAll();
     }
 
-    public Usuario buscarPorId(int id) {
+    public Usuario buscarPorId(ObjectId id) {
 
         Optional<Usuario> u = repo.findById(id);
 

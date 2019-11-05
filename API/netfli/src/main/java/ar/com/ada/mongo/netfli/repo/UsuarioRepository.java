@@ -10,7 +10,7 @@ import ar.com.ada.mongo.netfli.entities.Usuario;
  * UsuarioRepository
  */
 @Repository
-public interface UsuarioRepository extends MongoRepository<Usuario, Integer> {
+public interface UsuarioRepository extends MongoRepository<Usuario, ObjectId> {
     Usuario findBy_id(ObjectId _id);    
     Usuario findByUserName(String userName);
     Usuario findByUserEmail(String email);
