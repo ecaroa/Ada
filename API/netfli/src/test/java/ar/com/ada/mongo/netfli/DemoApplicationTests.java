@@ -2,6 +2,8 @@ package ar.com.ada.mongo.netfli;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,7 +26,7 @@ class DemoApplicationTests {
 
 	@Test
 	void verificarSerie() {
-		SerieService service = new SerieService();
+	
 
 		Serie serie = new Serie();
 		
@@ -37,7 +39,7 @@ class DemoApplicationTests {
 
 	@Test
 	void verificarSerieTempDuplicada() {
-		SerieService service = new SerieService();
+		
 
 		Serie serie = new Serie();
 		serie.setNombre("Breaking Bad");
@@ -71,8 +73,7 @@ class DemoApplicationTests {
 	}
 
 	@Test 
-	void verificarTemporadaExistente() {
-		SerieService service = new SerieService();
+	void verificarTemporadaNula() {
 
 		Serie serie = new Serie ();
 		serie.setNombre("Breaking Bad");
@@ -82,12 +83,24 @@ class DemoApplicationTests {
 
 		SerieValidationType serieValidationType = service.verificarSerie(serie);
 		
-		assertEquals(SerieValidationType.TEMPORADA_INVALIDA, serieValidationType);
-
-
-
+		assertEquals(SerieValidationType.TEMPORADAS_NULA, serieValidationType);
 
 	}
+
+	@Test
+	void verificarTemporadaVacia() {
+
+		Serie serie = new Serie ();
+		serie.setNombre("Breaking Bad");
+		serie.setAño(2008);
+		serie.setGenero("Drama");
+		serie.setTemporadas(new ArrayList<>());
+
+		SerieValidationType serieValidationType = service.verificarSerie(serie);
+		
+		assertEquals(SerieValidationType.TEMPORADAS_VACIA, serieValidationType);
+	}
+
 
 
 }
