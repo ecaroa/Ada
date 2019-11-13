@@ -3,6 +3,7 @@ package ar.com.ada.mongo.netfli;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import ar.com.ada.mongo.netfli.entities.Episodio;
@@ -13,6 +14,9 @@ import ar.com.ada.mongo.netfli.services.SerieService.SerieValidationType;
 
 @SpringBootTest
 class DemoApplicationTests {
+
+	@Autowired
+	SerieService service;
 
 	@Test
 	void contextLoads() {
@@ -65,5 +69,25 @@ class DemoApplicationTests {
 		assertEquals(SerieValidationType.TEMPORADA_DUPLICADA, serieValidationType);
 
 	}
+
+	@Test 
+	void verificarTemporadaExistente() {
+		SerieService service = new SerieService();
+
+		Serie serie = new Serie ();
+		serie.setNombre("Breaking Bad");
+		serie.setAño(2008);
+		serie.setGenero("Drama");
+		serie.setTemporadas(null);
+
+		SerieValidationType serieValidationType = service.verificarSerie(serie);
+		
+		assertEquals(SerieValidationType.TEMPORADA_INVALIDA, serieValidationType);
+
+
+
+
+	}
+
 
 }
