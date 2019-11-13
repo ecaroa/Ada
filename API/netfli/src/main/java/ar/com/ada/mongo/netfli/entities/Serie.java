@@ -31,4 +31,12 @@ public class Serie extends Contenido {
 
         return null;
     }
+
+    public List<Temporada> getTemporadas() {
+        return temporadas;
+    }
+
+    public void setTemporadas(List<Temporada> temporadas) {
+        this.temporadas = temporadas;
+    }
 }

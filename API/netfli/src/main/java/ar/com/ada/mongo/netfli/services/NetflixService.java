@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import ar.com.ada.mongo.netfli.entities.Peli;
 import ar.com.ada.mongo.netfli.entities.Serie;
+import ar.com.ada.mongo.netfli.entities.Temporada;
 import ar.com.ada.mongo.netfli.repo.PeliRepository;
+import ar.com.ada.mongo.netfli.services.SerieService.SerieValidationType;
 
 /**
  * NetflixService
@@ -26,13 +28,20 @@ public class NetflixService {
     PeliService peliService;
 
 
-    public void grabar(Serie serie) {
-        serieService.grabar(serie);
+    public SerieValidationType grabar(Serie serie) {
+
+
+        return serieService.grabar(serie);
+
     }
 
     public void grabar(Peli peli) {
         peliService.grabar(peli);
     }
+
+ 
+
+    
     
 
     public Serie buscarSerie(String nombre) {
