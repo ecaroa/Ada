@@ -1,0 +1,770 @@
+{
+	"info": {
+		"_postman_id": "1f7404fc-9b92-4100-9bce-aa5d6d12dcb4",
+		"name": "inmobiliaria",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\"nombre\":\"Lucía\",\r\n\t\t\"dni\":\"32423567\",\r\n\t    \"edad\":35,\r\n\t    \"email\":\"l@g.com\",\r\n\t    \"password\":\"4586732\",\r\n\t    \"tipoUsuario\":\"graf\",\r\n\t    \"cuit\":\"\"\r\n\t    \r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\"username\":\"l@g.com\",\r\n\t    \"password\":\"4586732\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aviso Alquiler post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsQGcuY29tIiwiZXhwIjoxNTcyNTg4MTA1LCJpYXQiOjE1NzI1NzAxMDV9.7XOBKyVjRwQXlBqVtJv-OFtnKoZNdgVEGI7S6U5GXUxIVj5U1WlpNIB092wNJXLnPbjpu_yACL5Xgtu1zuqPLA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\"inmuebleId\":4,\r\n\t    \"moneda\":\"AR$\",\r\n\t    \"plazoMeses\":36,\r\n\t    \"tipoAlquiler\":\"Comercial\",\r\n    \t\"valor\":60000\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/avisos/alquileres",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"avisos",
+						"alquileres"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aviso Venta post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsQGcuY29tIiwiZXhwIjoxNTcyNTg4MTA1LCJpYXQiOjE1NzI1NzAxMDV9.7XOBKyVjRwQXlBqVtJv-OFtnKoZNdgVEGI7S6U5GXUxIVj5U1WlpNIB092wNJXLnPbjpu_yACL5Xgtu1zuqPLA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\"inmuebleId\":4,\r\n\t    \"moneda\":\"U$S\",\r\n    \t\"valor\":600000\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/avisos/ventas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"avisos",
+						"ventas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Avisos con Inmueble get",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsQGcuY29tIiwiZXhwIjoxNTcyNTg4MTA1LCJpYXQiOjE1NzI1NzAxMDV9.7XOBKyVjRwQXlBqVtJv-OFtnKoZNdgVEGI7S6U5GXUxIVj5U1WlpNIB092wNJXLnPbjpu_yACL5Xgtu1zuqPLA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/avisos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"avisos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aviso getById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsQGcuY29tIiwiZXhwIjoxNTcyNTg4MTA1LCJpYXQiOjE1NzI1NzAxMDV9.7XOBKyVjRwQXlBqVtJv-OFtnKoZNdgVEGI7S6U5GXUxIVj5U1WlpNIB092wNJXLnPbjpu_yACL5Xgtu1zuqPLA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/avisos/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"avisos",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aviso Alquiler put",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsQGcuY29tIiwiZXhwIjoxNTcyNTg4MTA1LCJpYXQiOjE1NzI1NzAxMDV9.7XOBKyVjRwQXlBqVtJv-OFtnKoZNdgVEGI7S6U5GXUxIVj5U1WlpNIB092wNJXLnPbjpu_yACL5Xgtu1zuqPLA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\"inmuebleId\":2,\r\n\t    \"moneda\":\"AR$\",\r\n\t    \"plazoMeses\":36,\r\n\t    \"tipoAlquiler\":\"Vivienda\",\r\n    \t\"valor\":25000\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/avisos/alquileres/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"avisos",
+						"alquileres",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aviso Venta put",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsQGcuY29tIiwiZXhwIjoxNTcyNTg4MTA1LCJpYXQiOjE1NzI1NzAxMDV9.7XOBKyVjRwQXlBqVtJv-OFtnKoZNdgVEGI7S6U5GXUxIVj5U1WlpNIB092wNJXLnPbjpu_yACL5Xgtu1zuqPLA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\"inmuebleId\":2,\r\n\t    \"moneda\":\"U$S\",\r\n    \t\"valor\":300000\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/avisos/ventas/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"avisos",
+						"ventas",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Locador crear",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsQGcuY29tIiwiZXhwIjoxNTcyNTY1MjQwLCJpYXQiOjE1NzI1NDcyNDB9.VCfY7ndyD7TyUPsjxvJphWw_Zpq9cgavSCA_vuJCaAqukHaR0GTpektxrSgj459e0Y-qdej-ajdVkNI7B-FkSQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\"nombre\":\"Jorge Chuhu\",\r\n\t    \"dni\":\"46678430\",\r\n    \t\"edad\":57,\r\n    \t\"email\": \"chuhui@g.com\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/locadores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"locadores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Inmueble crear",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsQGcuY29tIiwiZXhwIjoxNTcyNTg4MTA1LCJpYXQiOjE1NzI1NzAxMDV9.7XOBKyVjRwQXlBqVtJv-OFtnKoZNdgVEGI7S6U5GXUxIVj5U1WlpNIB092wNJXLnPbjpu_yACL5Xgtu1zuqPLA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\"tipoInmueble\":\"Local\",\r\n\t    \"locadorId\":\"4\",\r\n    \t\"direccion\":\"Av. Directorio 333\",\r\n    \t\"superficie\": 45,\r\n    \t\"cantDormitorio\": 0,\r\n    \t\"aptoProf\": \"y\",\r\n    \t\"disposicion\": \"Frente\",\r\n    \t\"cantBanios\": 1,\r\n    \t\"antiguedadAnios\": 10\r\n}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/inmuebles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"inmuebles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Locadores get",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsQGcuY29tIiwiZXhwIjoxNTcyNTg4MTA1LCJpYXQiOjE1NzI1NzAxMDV9.7XOBKyVjRwQXlBqVtJv-OFtnKoZNdgVEGI7S6U5GXUxIVj5U1WlpNIB092wNJXLnPbjpu_yACL5Xgtu1zuqPLA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/locadores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"locadores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Locador get",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsQGcuY29tIiwiZXhwIjoxNTcyNTg4MTA1LCJpYXQiOjE1NzI1NzAxMDV9.7XOBKyVjRwQXlBqVtJv-OFtnKoZNdgVEGI7S6U5GXUxIVj5U1WlpNIB092wNJXLnPbjpu_yACL5Xgtu1zuqPLA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/locadores/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"locadores",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Inmuebles get",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsQGcuY29tIiwiZXhwIjoxNTcyNTg4MTA1LCJpYXQiOjE1NzI1NzAxMDV9.7XOBKyVjRwQXlBqVtJv-OFtnKoZNdgVEGI7S6U5GXUxIVj5U1WlpNIB092wNJXLnPbjpu_yACL5Xgtu1zuqPLA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/inmuebles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"inmuebles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Inmueble get",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsQGcuY29tIiwiZXhwIjoxNTcyNTg4MTA1LCJpYXQiOjE1NzI1NzAxMDV9.7XOBKyVjRwQXlBqVtJv-OFtnKoZNdgVEGI7S6U5GXUxIVj5U1WlpNIB092wNJXLnPbjpu_yACL5Xgtu1zuqPLA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/inmuebles/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"inmuebles",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reserva post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsQGcuY29tIiwiZXhwIjoxNTcyNTg4MTA1LCJpYXQiOjE1NzI1NzAxMDV9.7XOBKyVjRwQXlBqVtJv-OFtnKoZNdgVEGI7S6U5GXUxIVj5U1WlpNIB092wNJXLnPbjpu_yACL5Xgtu1zuqPLA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\"locatarioId\":1\r\n}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/inmuebles/3/reservas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"inmuebles",
+						"3",
+						"reservas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reservas get",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsQGcuY29tIiwiZXhwIjoxNTcyNTg4MTA1LCJpYXQiOjE1NzI1NzAxMDV9.7XOBKyVjRwQXlBqVtJv-OFtnKoZNdgVEGI7S6U5GXUxIVj5U1WlpNIB092wNJXLnPbjpu_yACL5Xgtu1zuqPLA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/inmuebles/reservas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"inmuebles",
+						"reservas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reserva getById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsQGcuY29tIiwiZXhwIjoxNTcyNTg4MTA1LCJpYXQiOjE1NzI1NzAxMDV9.7XOBKyVjRwQXlBqVtJv-OFtnKoZNdgVEGI7S6U5GXUxIVj5U1WlpNIB092wNJXLnPbjpu_yACL5Xgtu1zuqPLA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/inmuebles/reservas/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"inmuebles",
+						"reservas",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reserva update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsQGcuY29tIiwiZXhwIjoxNTcyNTg4MTA1LCJpYXQiOjE1NzI1NzAxMDV9.7XOBKyVjRwQXlBqVtJv-OFtnKoZNdgVEGI7S6U5GXUxIVj5U1WlpNIB092wNJXLnPbjpu_yACL5Xgtu1zuqPLA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\"locatarioId\":1\r\n}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/inmuebles/4/reservas/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"inmuebles",
+						"4",
+						"reservas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Locatarios get",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsQGcuY29tIiwiZXhwIjoxNTcyNTg4MTA1LCJpYXQiOjE1NzI1NzAxMDV9.7XOBKyVjRwQXlBqVtJv-OFtnKoZNdgVEGI7S6U5GXUxIVj5U1WlpNIB092wNJXLnPbjpu_yACL5Xgtu1zuqPLA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/locatarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"locatarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Locatario getById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsQGcuY29tIiwiZXhwIjoxNTcyNTg4MTA1LCJpYXQiOjE1NzI1NzAxMDV9.7XOBKyVjRwQXlBqVtJv-OFtnKoZNdgVEGI7S6U5GXUxIVj5U1WlpNIB092wNJXLnPbjpu_yACL5Xgtu1zuqPLA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/locatarios/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"locatarios",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Locatario delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsQGcuY29tIiwiZXhwIjoxNTcyNTg4MTA1LCJpYXQiOjE1NzI1NzAxMDV9.7XOBKyVjRwQXlBqVtJv-OFtnKoZNdgVEGI7S6U5GXUxIVj5U1WlpNIB092wNJXLnPbjpu_yACL5Xgtu1zuqPLA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/locatarios/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"locatarios",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuarios get",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsQGcuY29tIiwiZXhwIjoxNTcyNTg4MTA1LCJpYXQiOjE1NzI1NzAxMDV9.7XOBKyVjRwQXlBqVtJv-OFtnKoZNdgVEGI7S6U5GXUxIVj5U1WlpNIB092wNJXLnPbjpu_yACL5Xgtu1zuqPLA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
