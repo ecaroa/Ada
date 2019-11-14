@@ -8,14 +8,17 @@
             "type": "java",
             "name": "Debug (Launch) - Current File",
             "request": "launch",
-            "mainClass": "${file}"
+            "mainClass": "${file}",
+            "console": "externalTerminal",
+            "stopOnEntry": true
         },
         {
             "type": "java",
-            "name": "Debug (Launch)-App<hallenge>",
+            "name": "Debug (Launch)-App<ChallengeHP>",
             "request": "launch",
             "mainClass": "app.App",
-            "projectName": "hallenge"
+            "projectName": "ChallengeHP",
+            "console": "integratedTerminal"
         }
     ]
 }
