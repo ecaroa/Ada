@@ -45,7 +45,7 @@ public class SerieService {
 
     public enum SerieValidationType {
 
-        SERIE_OK, TEMPORADAS_NULA, TEMPORADAS_VACIA, TEMPORADA_DUPLICADA, TEMPORADA_INVALIDA,
+        SERIE_OK, TEMPORADAS_NULA, TEMPORADAS_VACIA, TEMPORADA_DUPLICADA, LISTA_EPISODIO_VACIO,
 
         SERIE_DATOS_INVALIDOS
 
@@ -71,7 +71,7 @@ public class SerieService {
             if (unicasTemps.containsKey(new Integer(t.getNumeroTemporada())))
                 return SerieValidationType.TEMPORADA_DUPLICADA;
             if (t.getEpisodios().size() == 0)
-                return SerieValidationType.TEMPORADA_INVALIDA;
+                return SerieValidationType.LISTA_EPISODIO_VACIO;
 
             unicasTemps.put(new Integer(t.getNumeroTemporada()), t);
 

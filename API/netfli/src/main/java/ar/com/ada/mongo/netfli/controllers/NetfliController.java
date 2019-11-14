@@ -112,7 +112,7 @@ public class NetfliController {
             nt.id = serie.get_id().toString();
             return ResponseEntity.badRequest().body(nt);
 
-        case TEMPORADA_INVALIDA:
+        case LISTA_EPISODIO_VACIO:
             nt.isOk = false;
             nt.message = "temporada invalida";
             nt.id = serie.get_id().toString();

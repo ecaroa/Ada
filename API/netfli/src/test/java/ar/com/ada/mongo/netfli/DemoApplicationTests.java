@@ -102,5 +102,29 @@ class DemoApplicationTests {
 	}
 
 
+	@Test
+	void verificarEpisodioVacio() {
+		
 
+		Serie serie = new Serie();
+		serie.setNombre("Breaking Bad");
+		serie.setAño(2008);
+		serie.setGenero("Drama");
+		Temporada temporada = new Temporada();
+
+		temporada.setNumeroTemporada(13);
+
+		serie.getTemporadas().add(temporada);
+		temporada.setEpisodios(new ArrayList<>());
+		
+		
+
+		SerieValidationType serieValidationType = service.verificarSerie(serie);
+		
+		assertEquals(SerieValidationType.LISTA_EPISODIO_VACIO, serieValidationType);
+	
+
+
+
+}
 }

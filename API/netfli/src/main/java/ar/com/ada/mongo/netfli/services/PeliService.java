@@ -33,4 +33,14 @@ public class PeliService {
     public List<Peli> getCatalogo() {
         return peliRepo.findAll();
     }
+
+    public enum PeliValidationType {
+
+        PELI_OK, PELI_NULA, PELI_VACIA, PELI_DUPLICADA, PELI_DATOS_INVALIDOS
+
+    }
+
+
+
+
 }
